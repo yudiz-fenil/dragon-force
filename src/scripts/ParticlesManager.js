@@ -17,11 +17,11 @@ class ParticlesManager {
 		fireParticles.flow(0, 1);
 		bullet.emitter = fireParticles;
 	}
-	bossParticles = (bullet, boss) => {
+	bossParticles = (bullet, boss, texture) => {
 		const aParticles = [
 			this.oScene.add.particles("fire").setDepth(1),
 			this.oScene.add.particles("particle_2").setDepth(1),
-			this.oScene.add.particles("particle_3").setDepth(1),
+			this.oScene.add.particles(texture).setDepth(1),
 		];
 		for (let i = 0; i < aParticles.length; i++) {
 			const particle = aParticles[i];
@@ -60,6 +60,31 @@ class ParticlesManager {
 				frequency: 50,
 			})
 			emitter.startFollow(block);
+			setTimeout(() => {
+				emitter.stop();
+				emitter.remove();
+			}, 400);
+		}
+	}
+	insectParticles = (insect, nX, nY, texture) => {
+		const aParticles = [
+			this.oScene.add.particles("fire").setDepth(1),
+			this.oScene.add.particles("particle_0").setDepth(1),
+			this.oScene.add.particles(texture).setDepth(1),
+		];
+		for (let i = 0; i < aParticles.length; i++) {
+			const particle = aParticles[i];
+			const emitter = particle.createEmitter({
+				x: nX,
+				y: nY,
+				total: 50,
+				scale: { min: 0.15, max: 0.35 },
+				alpha: { start: 0.7, end: 0 },
+				lifespan: { min: 200, max: 250 },
+				speed: { min: 1000, max: 2500 },
+				frequency: 50,
+			})
+			emitter.startFollow(insect);
 			setTimeout(() => {
 				emitter.stop();
 				emitter.remove();

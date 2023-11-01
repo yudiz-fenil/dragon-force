@@ -42,6 +42,14 @@
         },
         {
             "type": "Container",
+            "id": "b3d7db12-bb0a-47b0-806a-a31ed437e108",
+            "label": "container_insects",
+            "scope": "CLASS",
+            "components": [],
+            "list": []
+        },
+        {
+            "type": "Container",
             "id": "bf542f8b-d0e4-4812-8132-b2bde5b8c246",
             "label": "container_body",
             "scope": "CLASS",
@@ -198,43 +206,52 @@
                             "y": 83
                         },
                         {
-                            "type": "Image",
-                            "id": "95195e48-9b26-42ba-b1b9-4e7b3356698b",
-                            "label": "star",
+                            "type": "Container",
+                            "id": "1cd7b23e-974b-4434-bcab-160944256a79",
+                            "label": "container_stars",
+                            "scope": "CLASS",
                             "components": [],
-                            "texture": {
-                                "key": "star"
-                            },
-                            "x": 471,
-                            "y": 60,
-                            "scaleX": 0.8,
-                            "scaleY": 0.8
-                        },
-                        {
-                            "type": "Image",
-                            "id": "5ab5d6dd-c07f-4eda-8700-aea8db647725",
-                            "label": "star_1",
-                            "components": [],
-                            "texture": {
-                                "key": "star"
-                            },
-                            "x": 597,
-                            "y": 60,
-                            "scaleX": 0.8,
-                            "scaleY": 0.8
-                        },
-                        {
-                            "type": "Image",
-                            "id": "dbd93bee-98c1-4a7e-92a3-7ad8581c82b6",
-                            "label": "star_2",
-                            "components": [],
-                            "texture": {
-                                "key": "star"
-                            },
-                            "x": 743,
-                            "y": 79,
-                            "scaleX": 1.5,
-                            "scaleY": 1.5
+                            "list": [
+                                {
+                                    "type": "Image",
+                                    "id": "95195e48-9b26-42ba-b1b9-4e7b3356698b",
+                                    "label": "star_0",
+                                    "components": [],
+                                    "texture": {
+                                        "key": "star"
+                                    },
+                                    "x": 471,
+                                    "y": 60,
+                                    "scaleX": 0.8,
+                                    "scaleY": 0.8
+                                },
+                                {
+                                    "type": "Image",
+                                    "id": "5ab5d6dd-c07f-4eda-8700-aea8db647725",
+                                    "label": "star_1",
+                                    "components": [],
+                                    "texture": {
+                                        "key": "star"
+                                    },
+                                    "x": 597,
+                                    "y": 60,
+                                    "scaleX": 0.8,
+                                    "scaleY": 0.8
+                                },
+                                {
+                                    "type": "Image",
+                                    "id": "dbd93bee-98c1-4a7e-92a3-7ad8581c82b6",
+                                    "label": "star_2",
+                                    "components": [],
+                                    "texture": {
+                                        "key": "star"
+                                    },
+                                    "x": 743,
+                                    "y": 79,
+                                    "scaleX": 1.5,
+                                    "scaleY": 1.5
+                                }
+                            ]
                         }
                     ]
                 },
@@ -272,6 +289,38 @@
                             "originX": 0
                         }
                     ]
+                },
+                {
+                    "type": "Image",
+                    "id": "c8c63f0a-c163-4d3a-a1bb-90746aba81cc",
+                    "label": "fill_base_1",
+                    "components": [],
+                    "texture": {
+                        "key": "coin-base"
+                    },
+                    "x": 162,
+                    "y": 86
+                },
+                {
+                    "type": "Text",
+                    "id": "a2e7a437-ddc5-4cd2-a34c-b59bac536b8d",
+                    "label": "txt_level",
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 160,
+                    "y": 86,
+                    "originX": 0.5,
+                    "originY": 0.5,
+                    "text": "LEVEL : 1",
+                    "fontFamily": "LilitaOne",
+                    "fontSize": "34px",
+                    "stroke": "#000000ff",
+                    "strokeThickness": 5,
+                    "shadow.offsetX": 3,
+                    "shadow.offsetY": 3,
+                    "shadow.stroke": true,
+                    "shadow.color": "#000000ff",
+                    "shadow.blur": 3
                 }
             ]
         },
@@ -282,13 +331,42 @@
             "scope": "CLASS",
             "components": [],
             "x": 540,
-            "y": 960,
+            "y": 900,
             "originX": 0.5,
             "originY": 0.5,
             "visible": false,
             "text": "BOSS APPROCHING",
             "fontFamily": "LilitaOne",
-            "fontSize": "66px"
+            "fontSize": "66px",
+            "stroke": "#000000ff",
+            "strokeThickness": 5,
+            "shadow.offsetX": 3,
+            "shadow.offsetY": 3,
+            "shadow.stroke": true,
+            "shadow.color": "#000000ff",
+            "shadow.blur": 3
+        },
+        {
+            "type": "Text",
+            "id": "76ac6df9-9888-487e-9a51-738972d68795",
+            "label": "txt_level_up",
+            "scope": "CLASS",
+            "components": [],
+            "x": 540,
+            "y": 900,
+            "originX": 0.5,
+            "originY": 0.5,
+            "visible": false,
+            "text": "LEVEL UP!",
+            "fontFamily": "LilitaOne",
+            "fontSize": "66px",
+            "stroke": "#000000ff",
+            "strokeThickness": 5,
+            "shadow.offsetX": 3,
+            "shadow.offsetY": 3,
+            "shadow.stroke": true,
+            "shadow.color": "#000000ff",
+            "shadow.blur": 3
         }
     ],
     "plainObjects": [],

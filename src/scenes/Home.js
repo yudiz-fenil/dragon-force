@@ -23,13 +23,14 @@ class Home extends Phaser.Scene {
 		const container_home = this.add.container(0, 0);
 
 		// btn_play
-		const btn_play = this.add.image(540, 1513, "btn_play");
+		const btn_play = this.add.image(540, 1312, "btn_play");
 		btn_play.scaleX = 2;
 		btn_play.scaleY = 2;
 		container_home.add(btn_play);
 
 		// container_buy_ui
 		const container_buy_ui = this.add.container(0, 0);
+		container_buy_ui.visible = false;
 		container_home.add(container_buy_ui);
 
 		// bg_buy
@@ -303,13 +304,13 @@ class Home extends Phaser.Scene {
 			this.scene.start("Level");
 		})
 		this.btn_buy.setInteractive().on('pointerdown', () => {
-			localStorage.setItem('kitten_bullets', this.nTotalBullets);
-			this.container_home.setVisible(false);
-			this.container_buy_bullets.setVisible(true);
+			// localStorage.setItem('kitten_bullets', this.nTotalBullets);
+			// this.container_home.setVisible(false);
+			// this.container_buy_bullets.setVisible(true);
 		})
 		this.btn_close.setInteractive().on('pointerdown', () => {
-			this.container_home.setVisible(true);
-			this.container_buy_bullets.setVisible(false);
+			// this.container_home.setVisible(true);
+			// this.container_buy_bullets.setVisible(false);
 		})
 	}
 

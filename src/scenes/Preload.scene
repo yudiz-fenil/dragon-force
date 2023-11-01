@@ -20,10 +20,11 @@
                 "PreloadText"
             ],
             "x": 540,
-            "y": 1277,
+            "y": 1187,
             "originX": 0.5,
             "originY": 0.5,
             "text": "0%",
+            "fontFamily": "LilitaOne",
             "fontSize": "100px"
         },
         {

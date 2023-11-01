@@ -137,6 +137,21 @@
                 "key": "particle_3"
             },
             {
+                "url": "assets/images/particles/particle_4.png",
+                "type": "image",
+                "key": "particle_4"
+            },
+            {
+                "url": "assets/images/particles/particle_5.png",
+                "type": "image",
+                "key": "particle_5"
+            },
+            {
+                "url": "assets/images/particles/particle_6.png",
+                "type": "image",
+                "key": "particle_6"
+            },
+            {
                 "url": "src/scripts/ParticlesManager.js",
                 "type": "script",
                 "key": "ParticlesManager"

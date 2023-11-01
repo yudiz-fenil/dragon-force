@@ -37,7 +37,7 @@
                         "key": "btn_play"
                     },
                     "x": 540,
-                    "y": 1513,
+                    "y": 1312,
                     "scaleX": 2,
                     "scaleY": 2
                 },
@@ -46,6 +46,7 @@
                     "id": "56e3d3c9-ac34-49ea-8405-57f703329a6a",
                     "label": "container_buy_ui",
                     "components": [],
+                    "visible": false,
                     "list": [
                         {
                             "type": "Image",
