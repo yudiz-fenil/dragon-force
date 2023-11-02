@@ -241,10 +241,11 @@ class Level extends Phaser.Scene {
 		return player;
 	}
 	singleBulllet = (velocityX, angle = 0) => {
-		const bullet = this.fireGroup.create(this.player.x, this.player.y - (this.player.height / 2), 'bullet');
+		const bullet = this.fireGroup.create(this.player.x, this.player.y - (this.player.height / 2.9), 'bullet');
 		bullet.setVelocityX(velocityX);
-		bullet.setAngle(angle);
+		// bullet.setAngle(angle);
 		bullet.setVelocityY(-3000);
+		bullet.setVisible(true);
 		bullet.setCircle(25);
 		this.fireParticles(bullet);
 	}
@@ -305,7 +306,7 @@ class Level extends Phaser.Scene {
 		const blockHeight = 100;
 		const blockPadding = 20;
 		const startX = (this.sys.game.config.width - (numColumns * (blockWidth + blockPadding))) / 2 + 55;
-		const startY = 100;
+		const startY = -50;
 		for (let row = 0; row < numRows; row++) {
 			for (let col = 0; col < numColumns; col++) {
 				const blockX = startX + col * (blockWidth + blockPadding);
@@ -325,7 +326,9 @@ class Level extends Phaser.Scene {
 		if (this.nScore % this.oGameManager.nCoinArrival === 0) {
 			this.addCoin(x, y);
 		}
-		if (this.nScore % this.oGameManager.oLevels[this.nLevel].nInsectArrival == 0 && this.insectGroup.getLength() <= 0 && !this.isBossApproching) {
+		if (this.nScore % this.oGameManager.oLevels[this.nLevel].nInsectArrival == 0 &&
+			this.insectGroup.getLength() <= this.oGameManager.oLevels[this.nLevel].nMaxInsects &&
+			!this.isBossApproching) {
 			this.addInsects();
 		}
 		if (this.nScore >= this.oGameManager.oLevels[this.nLevel].nTarget && !this.isBossApproching) {
@@ -582,9 +585,10 @@ class Level extends Phaser.Scene {
 	}
 	enterBoss = () => {
 		const texture = this.oGameManager.oLevels[this.nLevel].sBoss;
-		const boss = this.physics.add.sprite(540, 450, texture);
+		const boss = this.physics.add.sprite(540, -100, texture);
 		this.bossGroup.add(boss);
 		if (texture == "boss_1") {
+			boss.setScale(0.8);
 			boss.setOrigin(0.46, 0.45);
 			boss.setCircle(boss.width / 2.2);
 		} else {
@@ -595,9 +599,22 @@ class Level extends Phaser.Scene {
 		}
 		boss.setBounce(1);
 		this.container_blocks.add(boss);
-		boss.setVelocityX(500);
-		boss.setCollideWorldBounds(true, 1);
-
+		this.tweens.add({
+			targets: boss,
+			y: 450 * 2,
+			duration: 800,
+			onComplete: () => {
+				this.tweens.add({
+					targets: boss,
+					y: 450,
+					duration: 800,
+					onComplete: () => {
+						boss.setCollideWorldBounds(true, 1);
+						boss.setVelocityX(Phaser.Math.Between(400, 600));
+					}
+				})
+			}
+		})
 		this.nBossScore = this.oGameManager.oLevels[this.nLevel].nBossPower;
 
 		const moveBossDownAndUp = () => {
@@ -606,8 +623,8 @@ class Level extends Phaser.Scene {
 				this.tweens.timeline({
 					targets: boss,
 					tweens: [
-						{ y: 1400, duration: 1400, ease: 'Power1' },
-						{ y: initialY, duration: 1400, ease: 'Power1' }
+						{ y: Phaser.Math.Between(1350, 1500), duration: Phaser.Math.Between(1350, 1500), ease: 'Power1' },
+						{ y: initialY, duration: Phaser.Math.Between(1350, 1500), ease: 'Power1' }
 					],
 					onComplete: () => {
 					}
@@ -615,7 +632,7 @@ class Level extends Phaser.Scene {
 			}
 		};
 		this.time.addEvent({
-			delay: 5000,
+			delay: Phaser.Math.Between(3500, 5500),
 			callback: moveBossDownAndUp,
 			callbackScope: this,
 			loop: true
@@ -645,7 +662,7 @@ class Level extends Phaser.Scene {
 	}
 	addInsects = () => {
 		const texture = this.oGameManager.oLevels[this.nLevel].sInsect
-		const insect = this.physics.add.sprite(Phaser.Math.Between(10, 1900), 0, texture);
+		const insect = this.physics.add.sprite(Phaser.Math.Between(-50, 1900), 0, texture);
 		this.insectGroup.add(insect);
 		this.container_insects.add(insect);
 		if (texture == "insects_2") {
@@ -666,15 +683,15 @@ class Level extends Phaser.Scene {
 				this.tweens.timeline({
 					targets: insect,
 					tweens: [
-						{ y: Phaser.Math.Between(1500, 1750), duration: 1200, ease: 'Power1' },
-						{ y: Phaser.Math.Between(300, 500), duration: 1200, ease: 'Power1' },
+						{ y: Phaser.Math.Between(1400, 1750), duration: Phaser.Math.Between(1150, 1250), ease: 'Power1' },
+						{ y: Phaser.Math.Between(300, 500), duration: Phaser.Math.Between(1150, 1250), ease: 'Power1' },
 					],
 				});
 			}
 		};
 		moveInsectsDownAndUp();
 		const moveInsectsEvent = this.time.addEvent({
-			delay: 3000,
+			delay: Phaser.Math.Between(2500, 3500),
 			callback: moveInsectsDownAndUp,
 			callbackScope: this,
 			loop: true

@@ -8,10 +8,14 @@ class ParticlesManager {
 			x: bullet.x,
 			y: bullet.y,
 			speed: { min: -500, max: 500 },
-			angle: { min: 0, max: 360 },
-			scale: { start: 0.4, end: 0 },
-			lifespan: 100,
+			// angle: { min: 0, max: 360 },
+			// rotate: { min: 50, max: 100 },
+			scale: { start: 0.35, end: 0 },
+			lifespan: 80,
+			// blendMode: "ERASE",
+			// tint: 0xFFFFFF,
 			frequency: 2,
+			quantity: 1,
 		});
 		fireParticles.startFollow(bullet);
 		fireParticles.flow(0, 1);
@@ -19,9 +23,9 @@ class ParticlesManager {
 	}
 	bossParticles = (bullet, boss, texture) => {
 		const aParticles = [
-			this.oScene.add.particles("fire").setDepth(1),
 			this.oScene.add.particles("particle_2").setDepth(1),
 			this.oScene.add.particles(texture).setDepth(1),
+			this.oScene.add.particles("fire").setDepth(1),
 		];
 		for (let i = 0; i < aParticles.length; i++) {
 			const particle = aParticles[i];
@@ -52,18 +56,20 @@ class ParticlesManager {
 			const emitter = particle.createEmitter({
 				x: nX,
 				y: nY,
-				total: 50,
+				total: 100,
 				scale: { min: 0.15, max: 0.35 },
 				alpha: { start: 0.7, end: 0 },
 				lifespan: { min: 200, max: 250 },
 				speed: { min: 1000, max: 2500 },
-				frequency: 50,
+				frequency: 40,
+				on: false,
 			})
 			emitter.startFollow(block);
+			emitter.start();
 			setTimeout(() => {
 				emitter.stop();
 				emitter.remove();
-			}, 400);
+			}, 350);
 		}
 	}
 	insectParticles = (insect, nX, nY, texture) => {
