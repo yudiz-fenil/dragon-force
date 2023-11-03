@@ -87,6 +87,11 @@
                 "key": "fire"
             },
             {
+                "url": "assets/images/particles/fire2.png",
+                "type": "image",
+                "key": "fire2"
+            },
+            {
                 "url": "src/scripts/GameManager.js",
                 "type": "script",
                 "key": "GameManager"

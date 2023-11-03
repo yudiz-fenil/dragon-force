@@ -73,12 +73,14 @@
                             "type": "Image",
                             "id": "f234223f-2317-4f98-aa05-5e7bb1d50b5f",
                             "label": "coin_base",
+                            "scope": "CLASS",
                             "components": [],
                             "texture": {
                                 "key": "coin-base"
                             },
-                            "x": 983,
-                            "y": 86
+                            "x": 1067.5,
+                            "y": 86,
+                            "originX": 1
                         },
                         {
                             "type": "Image",
@@ -314,13 +316,7 @@
                     "text": "LEVEL : 1",
                     "fontFamily": "LilitaOne",
                     "fontSize": "34px",
-                    "stroke": "#000000ff",
-                    "strokeThickness": 5,
-                    "shadow.offsetX": 3,
-                    "shadow.offsetY": 3,
-                    "shadow.stroke": true,
-                    "shadow.color": "#000000ff",
-                    "shadow.blur": 3
+                    "shadow.color": "#fff"
                 }
             ]
         },

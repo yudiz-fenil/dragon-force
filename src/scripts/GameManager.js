@@ -6,7 +6,7 @@ class GameManager {
 			{ isOpen: false, nPrice: 500 }, // 3
 			{ isOpen: false, nPrice: 700 }, // 4
 		]
-		this.nCoinArrival = 10;
+		this.nCoinArrival = 10; // 10
 		this.nBossPower = 50; // 50
 		this.nTarget = 80; // 80
 		this.oLevels = {

@@ -15,10 +15,10 @@
             "label": "bg",
             "components": [],
             "texture": {
-                "key": "bg"
+                "key": "home-bg"
             },
             "x": 540,
-            "y": 900
+            "y": 958
         },
         {
             "type": "Container",
@@ -36,10 +36,10 @@
                     "texture": {
                         "key": "btn_play"
                     },
-                    "x": 540,
-                    "y": 1312,
-                    "scaleX": 2,
-                    "scaleY": 2
+                    "x": 532,
+                    "y": 1518,
+                    "originX": 0.46,
+                    "originY": 0.42
                 },
                 {
                     "type": "Container",
@@ -416,6 +416,14 @@
         },
         {
             "type": "Container",
+            "id": "e5fa52b9-3a62-4b49-99df-750c1f0b2345",
+            "label": "container_fire_particles",
+            "scope": "CLASS",
+            "components": [],
+            "list": []
+        },
+        {
+            "type": "Container",
             "id": "368741e7-02a5-450e-a3f7-5ed9c4b3b4b7",
             "label": "container_header",
             "scope": "CLASS",
@@ -457,7 +465,94 @@
                         "key": "logo"
                     },
                     "x": 540,
-                    "y": 323
+                    "y": 800
+                }
+            ]
+        },
+        {
+            "type": "Container",
+            "id": "9ce5350d-8f60-4de9-8326-673153a130f8",
+            "label": "container_fire",
+            "scope": "CLASS",
+            "components": [],
+            "visible": false,
+            "list": [
+                {
+                    "type": "Image",
+                    "id": "f70de686-6f3a-4feb-b44e-d6edb2779d39",
+                    "label": "fire2",
+                    "components": [],
+                    "texture": {
+                        "key": "fire2"
+                    },
+                    "x": 196,
+                    "y": 877
+                },
+                {
+                    "type": "Image",
+                    "id": "c097e997-edbb-4120-bc15-064f7734a044",
+                    "label": "fire",
+                    "components": [],
+                    "texture": {
+                        "key": "fire2"
+                    },
+                    "x": 288,
+                    "y": 835
+                },
+                {
+                    "type": "Image",
+                    "id": "b07a77e1-f229-42b0-9b22-f73bfd58884f",
+                    "label": "fire_1",
+                    "components": [],
+                    "texture": {
+                        "key": "fire2"
+                    },
+                    "x": 413,
+                    "y": 810
+                },
+                {
+                    "type": "Image",
+                    "id": "8f27de61-e364-4f7e-9ef9-76c747ca2575",
+                    "label": "fire_2",
+                    "components": [],
+                    "texture": {
+                        "key": "fire2"
+                    },
+                    "x": 545,
+                    "y": 700
+                },
+                {
+                    "type": "Image",
+                    "id": "0228cd34-1194-49ff-824a-572fb349071a",
+                    "label": "fire_3",
+                    "components": [],
+                    "texture": {
+                        "key": "fire2"
+                    },
+                    "x": 666,
+                    "y": 820
+                },
+                {
+                    "type": "Image",
+                    "id": "c1685f0c-bef9-41e2-8492-7951fd8cf4ca",
+                    "label": "fire_4",
+                    "components": [],
+                    "texture": {
+                        "key": "fire2"
+                    },
+                    "x": 790,
+                    "y": 838
+                },
+                {
+                    "type": "Image",
+                    "id": "bf3e471a-2222-44b9-adb4-8b7d076d863a",
+                    "label": "fire_5",
+                    "components": [],
+                    "texture": {
+                        "key": "fire2"
+                    },
+                    "x": 882,
+                    "y": 907
                 }
             ]
         }

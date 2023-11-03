@@ -13,6 +13,17 @@
     },
     "displayList": [
         {
+            "type": "Image",
+            "id": "a262227a-b7a2-43cd-b51e-bf9ab3f0bdf8",
+            "label": "home_bg",
+            "components": [],
+            "texture": {
+                "key": "home-bg"
+            },
+            "x": 540,
+            "y": 958
+        },
+        {
             "type": "Text",
             "id": "2ce42443-5227-4c9b-b498-e81f9a21cde3",
             "label": "progress",
@@ -20,7 +31,7 @@
                 "PreloadText"
             ],
             "x": 540,
-            "y": 1187,
+            "y": 1518,
             "originX": 0.5,
             "originY": 0.5,
             "text": "0%",
@@ -36,7 +47,7 @@
                 "key": "logo"
             },
             "x": 540,
-            "y": 436
+            "y": 800
         }
     ],
     "plainObjects": [],

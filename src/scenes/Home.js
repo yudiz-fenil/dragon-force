@@ -17,15 +17,14 @@ class Home extends Phaser.Scene {
 	editorCreate() {
 
 		// bg
-		this.add.image(540, 900, "bg");
+		this.add.image(540, 958, "home-bg");
 
 		// container_home
 		const container_home = this.add.container(0, 0);
 
 		// btn_play
-		const btn_play = this.add.image(540, 1312, "btn_play");
-		btn_play.scaleX = 2;
-		btn_play.scaleY = 2;
+		const btn_play = this.add.image(532, 1518, "btn_play");
+		btn_play.setOrigin(0.46, 0.42);
 		container_home.add(btn_play);
 
 		// container_buy_ui
@@ -192,6 +191,9 @@ class Home extends Phaser.Scene {
 		const btn_close = this.add.image(966, 128, "btn_close");
 		container_buy_bullets.add(btn_close);
 
+		// container_fire_particles
+		const container_fire_particles = this.add.container(0, 0);
+
 		// container_header
 		const container_header = this.add.container(0, 0);
 
@@ -209,17 +211,51 @@ class Home extends Phaser.Scene {
 		container_header.add(txt_coins);
 
 		// logo
-		const logo = this.add.image(540, 323, "logo");
+		const logo = this.add.image(540, 800, "logo");
 		container_header.add(logo);
+
+		// container_fire
+		const container_fire = this.add.container(0, 0);
+		container_fire.visible = false;
+
+		// fire2
+		const fire2 = this.add.image(196, 877, "fire2");
+		container_fire.add(fire2);
+
+		// fire
+		const fire = this.add.image(288, 835, "fire2");
+		container_fire.add(fire);
+
+		// fire_1
+		const fire_1 = this.add.image(413, 810, "fire2");
+		container_fire.add(fire_1);
+
+		// fire_2
+		const fire_2 = this.add.image(545, 700, "fire2");
+		container_fire.add(fire_2);
+
+		// fire_3
+		const fire_3 = this.add.image(666, 820, "fire2");
+		container_fire.add(fire_3);
+
+		// fire_4
+		const fire_4 = this.add.image(790, 838, "fire2");
+		container_fire.add(fire_4);
+
+		// fire_5
+		const fire_5 = this.add.image(882, 907, "fire2");
+		container_fire.add(fire_5);
 
 		this.container_home = container_home;
 		this.btn_play = btn_play;
 		this.btn_buy = btn_buy;
 		this.container_buy_bullets = container_buy_bullets;
 		this.btn_close = btn_close;
+		this.container_fire_particles = container_fire_particles;
 		this.container_header = container_header;
 		this.coinImage = coinImage;
 		this.txt_coins = txt_coins;
+		this.container_fire = container_fire;
 
 		this.events.emit("scene-awake");
 	}
@@ -235,30 +271,19 @@ class Home extends Phaser.Scene {
 	/** @type {Phaser.GameObjects.Image} */
 	btn_close;
 	/** @type {Phaser.GameObjects.Container} */
+	container_fire_particles;
+	/** @type {Phaser.GameObjects.Container} */
 	container_header;
 	/** @type {Phaser.GameObjects.Image} */
 	coinImage;
 	/** @type {Phaser.GameObjects.Text} */
 	txt_coins;
+	/** @type {Phaser.GameObjects.Container} */
+	container_fire;
 
 	/* START-USER-CODE */
 
 	// Write your code here
-	fallParticles = () => {
-		const fallEmitter = this.add.particles('block_2');
-		const deathZone = new Phaser.Geom.Rectangle(0, 1920, 1080, 10);
-		const emitter1 = fallEmitter.createEmitter({
-			x: { min: 0, max: 1080 },
-			lifespan: 20000,
-			speedY: { min: 500, max: 700 },
-			scale: { min: 0.075, max: 0.175 },
-			quantity: 1,
-			blendMode: 'NORMAL',
-			alpha: { min: 0.2, max: 0.6 },
-			frequency: 28,
-			deathZone: { type: 'onEnter', source: deathZone },
-		});
-	}
 	toggleFullScreen(element) {
 		if (!document.fullscreenElement &&    // standard
 			!document.mozFullScreenElement && // Firefox
@@ -285,16 +310,51 @@ class Home extends Phaser.Scene {
 			}
 		}
 	}
+	logoFire = () => {
+		const fireParticle = this.add.particles("fire2");
+		this.container_fire_particles.add(fireParticle);
+		this.container_fire.each(fire => {
+			const fireEmitter = fireParticle.createEmitter({
+				x: fire.x,
+				y: fire.y,
+				speed: { min: -90, max: 90 },
+				angle: { min: 0, max: 360 },
+				scale: { start: 0.8, end: 0 },
+				blendMode: "ADD",
+				lifespan: 1500,
+				tint: 0x152345,
+				gravityY: -280,
+				frequency: 20,
+			});
+		})
+	}
+	btnParticles = () => {
+		const createParticleEmitter = (texture, offsetX, offsetY, speed, scaleStart, scaleEnd, ball, lifespanMin, lifespanMax) => {
+			const particleSystem = this.add.particles();
+			this.container_particles.add(particleSystem);
+			particleSystem.setTexture(texture);
+			const emitter = particleSystem.createEmitter({
+				speed: speed,
+				scale: { start: scaleStart, end: scaleEnd },
+				blendMode: 'ADD',
+				lifespan: { min: lifespanMin, max: lifespanMax }
+			});
+			emitter.startFollow(ball, offsetX, offsetY);
+			emitter.flow(0, 1);
+			emitter.setGravityX(-200);
+			return particleSystem;
+		}
+	}
 	create() {
-		this.fallParticles();
+		// localStorage.setItem('dragon_bullets', 1);
 		this.editorCreate();
-		// localStorage.setItem('kitten_bullets', 1);
+		this.logoFire();
 		this.oGameManager = new GameManager(this);
 		this.input.mouse.releasePointerLock();
 
-		this.nTotalBullets = parseInt(localStorage.getItem('kitten_bullets')) || 1;
+		this.nTotalBullets = parseInt(localStorage.getItem('dragon_bullets')) || 1;
 
-		this.nCoins = parseInt(localStorage.getItem('kitten_coins')) || 0;
+		this.nCoins = parseInt(localStorage.getItem('dragon_coins')) || 0;
 		this.txt_coins.setText(this.nCoins);
 
 		this.btn_play.setInteractive().on('pointerup', () => {
@@ -304,7 +364,7 @@ class Home extends Phaser.Scene {
 			this.scene.start("Level");
 		})
 		this.btn_buy.setInteractive().on('pointerdown', () => {
-			// localStorage.setItem('kitten_bullets', this.nTotalBullets);
+			// localStorage.setItem('dragon_bullets', this.nTotalBullets);
 			// this.container_home.setVisible(false);
 			// this.container_buy_bullets.setVisible(true);
 		})

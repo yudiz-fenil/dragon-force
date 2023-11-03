@@ -40,7 +40,8 @@ class Level extends Phaser.Scene {
 		container_header.add(container_coin);
 
 		// coin_base
-		const coin_base = this.add.image(983, 86, "coin-base");
+		const coin_base = this.add.image(1067.5, 86, "coin-base");
+		coin_base.setOrigin(1, 0.5);
 		container_coin.add(coin_base);
 
 		// coinImage
@@ -139,7 +140,7 @@ class Level extends Phaser.Scene {
 		const txt_level = this.add.text(160, 86, "", {});
 		txt_level.setOrigin(0.5, 0.5);
 		txt_level.text = "LEVEL : 1";
-		txt_level.setStyle({ "fontFamily": "LilitaOne", "fontSize": "34px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
+		txt_level.setStyle({ "fontFamily": "LilitaOne", "fontSize": "34px", "shadow.color": "#fff" });
 		container_header.add(txt_level);
 
 		// txt_boss
@@ -147,14 +148,14 @@ class Level extends Phaser.Scene {
 		txt_boss.setOrigin(0.5, 0.5);
 		txt_boss.visible = false;
 		txt_boss.text = "BOSS APPROCHING";
-		txt_boss.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
+		txt_boss.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness":5,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.color": "#000000ff", "shadow.blur":3,"shadow.stroke":true});
 
 		// txt_level_up
 		const txt_level_up = this.add.text(540, 900, "", {});
 		txt_level_up.setOrigin(0.5, 0.5);
 		txt_level_up.visible = false;
 		txt_level_up.text = "LEVEL UP!";
-		txt_level_up.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
+		txt_level_up.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness":5,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.color": "#000000ff", "shadow.blur":3,"shadow.stroke":true});
 
 		this.bg = bg;
 		this.container_particles = container_particles;
@@ -162,6 +163,7 @@ class Level extends Phaser.Scene {
 		this.container_insects = container_insects;
 		this.container_body = container_body;
 		this.container_header = container_header;
+		this.coin_base = coin_base;
 		this.coinImage = coinImage;
 		this.txt_coins = txt_coins;
 		this.txt_score = txt_score;
@@ -190,6 +192,8 @@ class Level extends Phaser.Scene {
 	container_body;
 	/** @type {Phaser.GameObjects.Container} */
 	container_header;
+	/** @type {Phaser.GameObjects.Image} */
+	coin_base;
 	/** @type {Phaser.GameObjects.Image} */
 	coinImage;
 	/** @type {Phaser.GameObjects.Text} */
@@ -428,6 +432,7 @@ class Level extends Phaser.Scene {
 	updateCoin = () => {
 		this.nCoins++;
 		this.txt_coins.setText(this.nCoins);
+		this.coin_base.displayWidth = this.txt_coins.width + 70;
 	}
 	levelUp = () => {
 		this.nLevel++;
@@ -449,7 +454,7 @@ class Level extends Phaser.Scene {
 		this.createBlocks();
 	}
 	gameOver = () => {
-		localStorage.setItem('kitten_coins', this.nCoins);
+		localStorage.setItem('dragon_coins', this.nCoins);
 		this.scene.restart("Level");
 		// this.scene.start("Home");
 	}
@@ -463,9 +468,10 @@ class Level extends Phaser.Scene {
 		this.nBossScore = 0;
 		this.nLevel = 1;
 		this.txt_level.setText("LEVEL : " + this.nLevel);
-		this.nCoins = localStorage.getItem('kitten_coins') || 0;
+		this.nCoins = localStorage.getItem('dragon_coins') || 0;
 		this.nTotalBullets = this.oGameManager.oLevels[this.nLevel].nTotalBullets
 		this.txt_coins.setText(this.nCoins);
+		this.coin_base.displayWidth = this.txt_coins.width + 70;
 		this.ringEmitter = this.add.particles("ring");
 		this.coinsGroup = this.physics.add.group();
 		this.fireGroup = this.physics.add.group();
@@ -709,7 +715,7 @@ class Level extends Phaser.Scene {
 		if (this.blocksGroup.getLength() == 0 && !this.isBossApproching) this.createBlocks();
 		this.blocksGroup.children.iterate((block) => {
 			if (block) {
-				block.setVelocityY(300);
+				block.setVelocityY(100);
 				if (block.y > this.sys.game.config.height + block.height) {
 					block.destroy();
 				}
