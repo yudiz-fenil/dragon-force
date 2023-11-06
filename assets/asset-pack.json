@@ -72,6 +72,51 @@
                 "key": "coin-base"
             },
             {
+                "url": "assets/images/fire-sprite/f1.png",
+                "type": "image",
+                "key": "f1"
+            },
+            {
+                "url": "assets/images/fire-sprite/f2.png",
+                "type": "image",
+                "key": "f2"
+            },
+            {
+                "url": "assets/images/fire-sprite/f3.png",
+                "type": "image",
+                "key": "f3"
+            },
+            {
+                "url": "assets/images/fire-sprite/f4.png",
+                "type": "image",
+                "key": "f4"
+            },
+            {
+                "url": "assets/images/fire-sprite/f5.png",
+                "type": "image",
+                "key": "f5"
+            },
+            {
+                "url": "assets/images/fire-sprite/f6.png",
+                "type": "image",
+                "key": "f6"
+            },
+            {
+                "url": "assets/images/fire-sprite/f7.png",
+                "type": "image",
+                "key": "f7"
+            },
+            {
+                "url": "assets/images/fire-sprite/f8.png",
+                "type": "image",
+                "key": "f8"
+            },
+            {
+                "url": "assets/images/fire-sprite/f9.png",
+                "type": "image",
+                "key": "f9"
+            },
+            {
                 "url": "assets/images/fill-base.png",
                 "type": "image",
                 "key": "fill-base"
@@ -85,6 +130,11 @@
                 "url": "assets/images/particles/fire.png",
                 "type": "image",
                 "key": "fire"
+            },
+            {
+                "url": "assets/animations/fire.json",
+                "type": "animation",
+                "key": "fire_1"
             },
             {
                 "url": "assets/images/particles/fire2.png",
@@ -170,6 +220,16 @@
                 "url": "assets/images/player2.png",
                 "type": "image",
                 "key": "player2"
+            },
+            {
+                "url": "assets/images/particles/red.png",
+                "type": "image",
+                "key": "red"
+            },
+            {
+                "url": "assets/images/particles/red-fire.png",
+                "type": "image",
+                "key": "red-fire"
             },
             {
                 "url": "assets/images/ring.png",

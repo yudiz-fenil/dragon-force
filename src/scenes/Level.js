@@ -148,14 +148,18 @@ class Level extends Phaser.Scene {
 		txt_boss.setOrigin(0.5, 0.5);
 		txt_boss.visible = false;
 		txt_boss.text = "BOSS APPROCHING";
-		txt_boss.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness":5,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.color": "#000000ff", "shadow.blur":3,"shadow.stroke":true});
+		txt_boss.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
 
 		// txt_level_up
 		const txt_level_up = this.add.text(540, 900, "", {});
 		txt_level_up.setOrigin(0.5, 0.5);
 		txt_level_up.visible = false;
 		txt_level_up.text = "LEVEL UP!";
-		txt_level_up.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness":5,"shadow.offsetX":3,"shadow.offsetY":3,"shadow.color": "#000000ff", "shadow.blur":3,"shadow.stroke":true});
+		txt_level_up.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
+
+		// dragon_fire
+		const dragon_fire = this.add.sprite(484, 1160, "f1");
+		dragon_fire.visible = false;
 
 		this.bg = bg;
 		this.container_particles = container_particles;
@@ -176,6 +180,7 @@ class Level extends Phaser.Scene {
 		this.txt_level = txt_level;
 		this.txt_boss = txt_boss;
 		this.txt_level_up = txt_level_up;
+		this.dragon_fire = dragon_fire;
 
 		this.events.emit("scene-awake");
 	}
@@ -218,10 +223,13 @@ class Level extends Phaser.Scene {
 	txt_boss;
 	/** @type {Phaser.GameObjects.Text} */
 	txt_level_up;
+	/** @type {Phaser.GameObjects.Sprite} */
+	dragon_fire;
 
 	/* START-USER-CODE */
 
 	// Write more your code here
+	playerParticles = (player) => this.oParticlesManager.playerParticles(player);
 	fireParticles = (bullet) => this.oParticlesManager.fireParticles(bullet);
 	bossParticles = (bullet, boss, texture) => this.oParticlesManager.bossParticles(bullet, boss, texture);
 	blockParticles = (block, nX, nY) => this.oParticlesManager.blockParticles(block, nX, nY);
@@ -242,6 +250,8 @@ class Level extends Phaser.Scene {
 		}
 		player.setInteractive();
 		player.name = "player";
+		// this.container_body.add(player);
+		// this.playerParticles(player);
 		return player;
 	}
 	singleBulllet = (velocityX, angle = 0) => {
@@ -460,6 +470,7 @@ class Level extends Phaser.Scene {
 	}
 	create() {
 		this.editorCreate();
+		// this.dragon_fire.anims.play("fire");
 		this.oGameManager = new GameManager(this);
 		this.oParticlesManager = new ParticlesManager(this);
 		this.fireTimer = false;
@@ -484,7 +495,7 @@ class Level extends Phaser.Scene {
 		this.player = this.setPlayer();
 
 		this.blocksCamera = this.cameras.add(0, 0, this.sys.game.config.width, this.sys.game.config.height);
-		this.blocksCamera.ignore([this.player, this.fireGroup, this.container_header, this.container_body, this.bg]);
+		this.blocksCamera.ignore([this.player, this.fireGroup, this.container_header, this.container_body, this.container_particles, this.bg]);
 
 		this.createBlocks();
 

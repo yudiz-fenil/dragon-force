@@ -22,6 +22,14 @@
         },
         {
             "type": "Container",
+            "id": "e5fa52b9-3a62-4b49-99df-750c1f0b2345",
+            "label": "container_fire_particles",
+            "scope": "CLASS",
+            "components": [],
+            "list": []
+        },
+        {
+            "type": "Container",
             "id": "8c9edcdb-1d23-4d14-a5c9-fdbb43599320",
             "label": "container_home",
             "scope": "CLASS",
@@ -413,14 +421,6 @@
                     "y": 128
                 }
             ]
-        },
-        {
-            "type": "Container",
-            "id": "e5fa52b9-3a62-4b49-99df-750c1f0b2345",
-            "label": "container_fire_particles",
-            "scope": "CLASS",
-            "components": [],
-            "list": []
         },
         {
             "type": "Container",

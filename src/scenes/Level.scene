@@ -363,6 +363,19 @@
             "shadow.stroke": true,
             "shadow.color": "#000000ff",
             "shadow.blur": 3
+        },
+        {
+            "type": "Sprite",
+            "id": "9ad465c4-57df-4d3a-9aa1-446f309079f1",
+            "label": "dragon_fire",
+            "scope": "CLASS",
+            "components": [],
+            "texture": {
+                "key": "f1"
+            },
+            "x": 484,
+            "y": 1160,
+            "visible": false
         }
     ],
     "plainObjects": [],

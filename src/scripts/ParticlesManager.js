@@ -126,4 +126,46 @@ class ParticlesManager {
 			}
 		});
 	}
+	playerParticles = (player) => {
+		// const fireParticle1 = this.oScene.add.particles("red");
+		// const fireEmitter1 = fireParticle1.createEmitter({
+		// 	x: { min: player.x - 50, max: player.x + 50 },
+		// 	y: { min: player.y, max: player.y - 50 },
+		// 	speed: 100,
+		// 	// offsetX: 300,
+		// 	// offsetY: 300,
+		// 	scale: { start: 1, end: 0 },
+		// 	angle: { min: 0, max: 360 },
+		// 	speed: { min: -150, max: 150 },
+		// 	lifespan: { min: 1000, max: 1500 },
+		// 	// gravityY: 380,
+		// 	frequency: 50,
+		// 	quantity: 5,
+		// 	tint: 0x840000,
+		// 	on: false,
+		// })
+		// fireEmitter1.start();
+		// fireEmitter1.startFollow(player);
+		// player.fireEmitter1 = fireEmitter1;
+		// const fireParticle2 = this.oScene.add.particles("red-fire");
+		// this.oScene.container_particles.add(fireParticle2);
+		// const fireEmitter2 = fireParticle2.createEmitter({
+		// 	x: { min: player.x - 50, max: player.x + 50 },
+		// 	y: { min: player.y, max: player.y - 50 },
+		// 	speed: 150,
+		// 	offsetX: 150,
+		// 	offsetY: 150,
+		// 	scale: { start: 1, end: 0 },
+		// 	angle: { min: 0, max: 360 },
+		// 	speed: { min: -150, max: 150 },
+		// 	lifespan: { min: 1000, max: 1500 },
+		// 	gravityY: -380,
+		// 	frequency: 50,
+		// 	quantity: 5,
+		// 	on: false,
+		// })
+		// fireEmitter2.start();
+		// fireEmitter2.startFollow(player);
+		// player.fireEmitter2 = fireEmitter2;
+	}
 }

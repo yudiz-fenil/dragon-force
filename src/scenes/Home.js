@@ -19,6 +19,9 @@ class Home extends Phaser.Scene {
 		// bg
 		this.add.image(540, 958, "home-bg");
 
+		// container_fire_particles
+		const container_fire_particles = this.add.container(0, 0);
+
 		// container_home
 		const container_home = this.add.container(0, 0);
 
@@ -191,9 +194,6 @@ class Home extends Phaser.Scene {
 		const btn_close = this.add.image(966, 128, "btn_close");
 		container_buy_bullets.add(btn_close);
 
-		// container_fire_particles
-		const container_fire_particles = this.add.container(0, 0);
-
 		// container_header
 		const container_header = this.add.container(0, 0);
 
@@ -246,12 +246,12 @@ class Home extends Phaser.Scene {
 		const fire_5 = this.add.image(882, 907, "fire2");
 		container_fire.add(fire_5);
 
+		this.container_fire_particles = container_fire_particles;
 		this.container_home = container_home;
 		this.btn_play = btn_play;
 		this.btn_buy = btn_buy;
 		this.container_buy_bullets = container_buy_bullets;
 		this.btn_close = btn_close;
-		this.container_fire_particles = container_fire_particles;
 		this.container_header = container_header;
 		this.coinImage = coinImage;
 		this.txt_coins = txt_coins;
@@ -260,6 +260,8 @@ class Home extends Phaser.Scene {
 		this.events.emit("scene-awake");
 	}
 
+	/** @type {Phaser.GameObjects.Container} */
+	container_fire_particles;
 	/** @type {Phaser.GameObjects.Container} */
 	container_home;
 	/** @type {Phaser.GameObjects.Image} */
@@ -270,8 +272,6 @@ class Home extends Phaser.Scene {
 	container_buy_bullets;
 	/** @type {Phaser.GameObjects.Image} */
 	btn_close;
-	/** @type {Phaser.GameObjects.Container} */
-	container_fire_particles;
 	/** @type {Phaser.GameObjects.Container} */
 	container_header;
 	/** @type {Phaser.GameObjects.Image} */
@@ -321,7 +321,7 @@ class Home extends Phaser.Scene {
 				angle: { min: 0, max: 360 },
 				scale: { start: 0.8, end: 0 },
 				blendMode: "ADD",
-				lifespan: 1500,
+				lifespan: { min: 1200, max: 1600 },
 				tint: 0x152345,
 				gravityY: -280,
 				frequency: 20,
@@ -329,26 +329,67 @@ class Home extends Phaser.Scene {
 		})
 	}
 	btnParticles = () => {
-		const createParticleEmitter = (texture, offsetX, offsetY, speed, scaleStart, scaleEnd, ball, lifespanMin, lifespanMax) => {
-			const particleSystem = this.add.particles();
-			this.container_particles.add(particleSystem);
-			particleSystem.setTexture(texture);
-			const emitter = particleSystem.createEmitter({
-				speed: speed,
-				scale: { start: scaleStart, end: scaleEnd },
-				blendMode: 'ADD',
-				lifespan: { min: lifespanMin, max: lifespanMax }
-			});
-			emitter.startFollow(ball, offsetX, offsetY);
-			emitter.flow(0, 1);
-			emitter.setGravityX(-200);
-			return particleSystem;
-		}
+		const fireParticle1 = this.add.particles("red");
+		const fireParticle2 = this.add.particles("red-fire");
+		this.container_fire_particles.add(fireParticle1);
+		this.container_fire_particles.add(fireParticle2);
+		this.fireEmitter1 = fireParticle1.createEmitter({
+			x: { min: this.btn_play.x - 50, max: this.btn_play.x + 50 },
+			y: { min: this.btn_play.y, max: this.btn_play.y - 50 },
+			speed: 150,
+			scale: { start: 1, end: 0 },
+			angle: { min: 0, max: 360 },
+			speed: { min: -150, max: 150 },
+			lifespan: { min: 1000, max: 1500 },
+			gravityY: -380,
+			frequency: 50,
+			quantity: 5,
+			on: false,
+		})
+		this.fireEmitter2 = fireParticle2.createEmitter({
+			x: { min: this.btn_play.x - 50, max: this.btn_play.x + 50 },
+			y: { min: this.btn_play.y, max: this.btn_play.y - 50 },
+			speed: 150,
+			scale: { start: 1, end: 0 },
+			angle: { min: 0, max: 360 },
+			speed: { min: -150, max: 150 },
+			lifespan: { min: 1000, max: 1500 },
+			gravityY: -380,
+			frequency: 50,
+			quantity: 5,
+			on: false,
+		})
+	}
+	pointerOver = (btn, scale) => {
+		this.input.setDefaultCursor('pointer');
+		this.fireEmitter1.start();
+		this.fireEmitter2.start();
+		this.tweens.add({
+			targets: btn,
+			scaleX: scale + 0.08,
+			scaleY: scale + 0.08,
+			duration: 100
+		})
+	}
+	pointerOut = (btn, scale) => {
+		this.input.setDefaultCursor('default');
+		this.fireEmitter1.stop();
+		this.fireEmitter2.stop();
+		this.tweens.add({
+			targets: btn,
+			scaleX: scale,
+			scaleY: scale,
+			duration: 100,
+			onComplete: () => {
+				btn.setScale(scale);
+			}
+		})
 	}
 	create() {
 		// localStorage.setItem('dragon_bullets', 1);
 		this.editorCreate();
 		this.logoFire();
+		this.btnParticles();
 		this.oGameManager = new GameManager(this);
 		this.input.mouse.releasePointerLock();
 
@@ -357,6 +398,8 @@ class Home extends Phaser.Scene {
 		this.nCoins = parseInt(localStorage.getItem('dragon_coins')) || 0;
 		this.txt_coins.setText(this.nCoins);
 
+		this.btn_play.setInteractive().on('pointerover', () => this.pointerOver(this.btn_play, 1));
+		this.btn_play.setInteractive().on('pointerout', () => this.pointerOut(this.btn_play, 1));
 		this.btn_play.setInteractive().on('pointerup', () => {
 			const gameContainer = document.getElementById('game-division');
 			this.toggleFullScreen(gameContainer);

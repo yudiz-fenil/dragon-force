@@ -30,7 +30,7 @@ class GameManager {
 				nColumn: 6,
 				nTotalBullets: 1,
 				sBoss: "boss_2", sBossParticles: "particle_6", nBossPower: this.nBossPower + (1 * 20),
-				sInsect: "insects_1", sInsectParticle: "particle_5", nInsectHealth: 8, nInsectArrival: 13, nMaxInsects: 0,
+				sInsect: "insects_1", sInsectParticle: "particle_5", nInsectHealth: 6, nInsectArrival: 13, nMaxInsects: 0,
 			},
 			3: {
 				sPlayer: "player",
@@ -41,7 +41,7 @@ class GameManager {
 				nColumn: 7,
 				nTotalBullets: 2,
 				sBoss: "boss_1", sBossParticles: "particle_3", nBossPower: this.nBossPower + (2 * 20),
-				sInsect: "insects_2", sInsectParticle: "particle_4", nInsectHealth: 12, nInsectArrival: 11, nMaxInsects: 1,
+				sInsect: "insects_2", sInsectParticle: "particle_4", nInsectHealth: 8, nInsectArrival: 11, nMaxInsects: 1,
 			},
 			4: {
 				sPlayer: "player",
@@ -52,7 +52,7 @@ class GameManager {
 				nColumn: 7,
 				nTotalBullets: 2,
 				sBoss: "boss_2", sBossParticles: "particle_6", nBossPower: this.nBossPower + (3 * 20),
-				sInsect: "insects_1", sInsectParticle: "particle_5", nInsectHealth: 17, nInsectArrival: 9, nMaxInsects: 1,
+				sInsect: "insects_1", sInsectParticle: "particle_5", nInsectHealth: 12, nInsectArrival: 9, nMaxInsects: 1,
 			},
 			5: {
 				sPlayer: "player",
@@ -63,7 +63,7 @@ class GameManager {
 				nColumn: 7,
 				nTotalBullets: 2,
 				sBoss: "boss_1", sBossParticles: "particle_3", nBossPower: this.nBossPower + (4 * 20),
-				sInsect: "insects_2", sInsectParticle: "particle_4", nInsectHealth: 22, nInsectArrival: 7, nMaxInsects: 2,
+				sInsect: "insects_2", sInsectParticle: "particle_4", nInsectHealth: 17, nInsectArrival: 7, nMaxInsects: 2,
 			},
 			6: {
 				sPlayer: "player",
@@ -74,7 +74,7 @@ class GameManager {
 				nColumn: 7,
 				nTotalBullets: 3,
 				sBoss: "boss_2", sBossParticles: "particle_6", nBossPower: this.nBossPower + (5 * 20),
-				sInsect: "insects_1", sInsectParticle: "particle_5", nInsectHealth: 27, nInsectArrival: 7, nMaxInsects: 2,
+				sInsect: "insects_1", sInsectParticle: "particle_5", nInsectHealth: 22, nInsectArrival: 7, nMaxInsects: 2,
 			},
 			7: {
 				sPlayer: "player",
@@ -85,7 +85,7 @@ class GameManager {
 				nColumn: 7,
 				nTotalBullets: 3,
 				sBoss: "boss_1", sBossParticles: "particle_3", nBossPower: this.nBossPower + (6 * 20),
-				sInsect: "insects_2", sInsectParticle: "particle_4", nInsectHealth: 32, nInsectArrival: 7, nMaxInsects: 3,
+				sInsect: "insects_2", sInsectParticle: "particle_4", nInsectHealth: 28, nInsectArrival: 7, nMaxInsects: 3,
 			},
 			8: {
 				sPlayer: "player",
@@ -96,7 +96,7 @@ class GameManager {
 				nColumn: 7,
 				nTotalBullets: 3,
 				sBoss: "boss_2", sBossParticles: "particle_6", nBossPower: this.nBossPower + (7 * 20),
-				sInsect: "insects_1", sInsectParticle: "particle_5", nInsectHealth: 37, nInsectArrival: 7, nMaxInsects: 4,
+				sInsect: "insects_1", sInsectParticle: "particle_5", nInsectHealth: 32, nInsectArrival: 7, nMaxInsects: 4,
 			},
 		}
 	}
