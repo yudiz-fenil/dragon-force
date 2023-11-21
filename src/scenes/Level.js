@@ -229,7 +229,6 @@ class Level extends Phaser.Scene {
 	/* START-USER-CODE */
 
 	// Write more your code here
-	playerParticles = (player) => this.oParticlesManager.playerParticles(player);
 	fireParticles = (bullet) => this.oParticlesManager.fireParticles(bullet);
 	bossParticles = (bullet, boss, texture) => this.oParticlesManager.bossParticles(bullet, boss, texture);
 	blockParticles = (block, nX, nY) => this.oParticlesManager.blockParticles(block, nX, nY);
@@ -250,8 +249,6 @@ class Level extends Phaser.Scene {
 		}
 		player.setInteractive();
 		player.name = "player";
-		// this.container_body.add(player);
-		// this.playerParticles(player);
 		return player;
 	}
 	singleBulllet = (velocityX, angle = 0) => {
@@ -465,11 +462,16 @@ class Level extends Phaser.Scene {
 	}
 	gameOver = () => {
 		localStorage.setItem('dragon_coins', this.nCoins);
-		this.scene.restart("Level");
-		// this.scene.start("Home");
+		this.scene.restart("Level", { oData: this.nLevel });
+	}
+	init(data) {
+		if (data.oData) {
+			this.nLevel = data.oData.nLevel;
+		}
 	}
 	create() {
 		this.editorCreate();
+		// this.dragon_fire.setVisible(true)
 		// this.dragon_fire.anims.play("fire");
 		this.oGameManager = new GameManager(this);
 		this.oParticlesManager = new ParticlesManager(this);
@@ -477,7 +479,7 @@ class Level extends Phaser.Scene {
 		this.isBossApproching = false;
 		this.nScore = 0;
 		this.nBossScore = 0;
-		this.nLevel = 1;
+		this.nLevel = this.nLevel || 1;
 		this.txt_level.setText("LEVEL : " + this.nLevel);
 		this.nCoins = localStorage.getItem('dragon_coins') || 0;
 		this.nTotalBullets = this.oGameManager.oLevels[this.nLevel].nTotalBullets

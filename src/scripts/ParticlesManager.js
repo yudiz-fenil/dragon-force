@@ -46,26 +46,55 @@ class ParticlesManager {
 		}
 	}
 	blockParticles = (block, nX, nY) => {
+		this.blockParticles2(block, nX, nY);
+		// const aParticles = [
+		// 	this.oScene.add.particles("fire").setDepth(1),
+		// 	this.oScene.add.particles("particle_0").setDepth(1),
+		// 	this.oScene.add.particles("particle_1").setDepth(1),
+		// ];
+		// for (let i = 0; i < aParticles.length; i++) {
+		// 	const particle = aParticles[i];
+		// 	const emitter = particle.createEmitter({
+		// 		x: nX,
+		// 		y: nY,
+		// 		total: 100,
+		// 		scale: { min: 0.15, max: 0.35 },
+		// 		alpha: { start: 0.7, end: 0 },
+		// 		lifespan: { min: 200, max: 250 },
+		// 		speed: { min: 1000, max: 2500 },
+		// 		frequency: 40,
+		// 		on: false,
+		// 	})
+		// 	emitter.startFollow(block);
+		// 	emitter.start();
+		// 	setTimeout(() => {
+		// 		emitter.stop();
+		// 		emitter.remove();
+		// 	}, 350);
+		// }
+	}
+	blockParticles2 = (block, nX, nY) => {
 		const aParticles = [
-			this.oScene.add.particles("fire").setDepth(1),
-			this.oScene.add.particles("particle_0").setDepth(1),
-			this.oScene.add.particles("particle_1").setDepth(1),
+			this.oScene.add.particles("particle_7").setDepth(1),
+			this.oScene.add.particles("particle_8").setDepth(1),
+			this.oScene.add.particles("particle_9").setDepth(1),
 		];
-		for (let i = 0; i < aParticles.length; i++) {
-			const particle = aParticles[i];
+		for (let i = 1; i < aParticles.length + 1; i++) {
+			const particle = aParticles[i - 1];
 			const emitter = particle.createEmitter({
 				x: nX,
 				y: nY,
-				total: 100,
-				scale: { min: 0.15, max: 0.35 },
-				alpha: { start: 0.7, end: 0 },
-				lifespan: { min: 200, max: 250 },
-				speed: { min: 1000, max: 2500 },
-				frequency: 40,
-				on: false,
+				lifespan: 1500,
+				// speed: { min: -200, max: 400 },
+				speed: -500 + (500 * i),
+				angle: { min: 0, max: 360 },
+				// gravityY: 300,
+				quantity: 1,
+				scale: { start: 1, end: 0 },
+				// blendMode: 'ADD'
 			})
 			emitter.startFollow(block);
-			emitter.start();
+			emitter.explode();
 			setTimeout(() => {
 				emitter.stop();
 				emitter.remove();
@@ -125,47 +154,5 @@ class ParticlesManager {
 				flash.destroy();
 			}
 		});
-	}
-	playerParticles = (player) => {
-		// const fireParticle1 = this.oScene.add.particles("red");
-		// const fireEmitter1 = fireParticle1.createEmitter({
-		// 	x: { min: player.x - 50, max: player.x + 50 },
-		// 	y: { min: player.y, max: player.y - 50 },
-		// 	speed: 100,
-		// 	// offsetX: 300,
-		// 	// offsetY: 300,
-		// 	scale: { start: 1, end: 0 },
-		// 	angle: { min: 0, max: 360 },
-		// 	speed: { min: -150, max: 150 },
-		// 	lifespan: { min: 1000, max: 1500 },
-		// 	// gravityY: 380,
-		// 	frequency: 50,
-		// 	quantity: 5,
-		// 	tint: 0x840000,
-		// 	on: false,
-		// })
-		// fireEmitter1.start();
-		// fireEmitter1.startFollow(player);
-		// player.fireEmitter1 = fireEmitter1;
-		// const fireParticle2 = this.oScene.add.particles("red-fire");
-		// this.oScene.container_particles.add(fireParticle2);
-		// const fireEmitter2 = fireParticle2.createEmitter({
-		// 	x: { min: player.x - 50, max: player.x + 50 },
-		// 	y: { min: player.y, max: player.y - 50 },
-		// 	speed: 150,
-		// 	offsetX: 150,
-		// 	offsetY: 150,
-		// 	scale: { start: 1, end: 0 },
-		// 	angle: { min: 0, max: 360 },
-		// 	speed: { min: -150, max: 150 },
-		// 	lifespan: { min: 1000, max: 1500 },
-		// 	gravityY: -380,
-		// 	frequency: 50,
-		// 	quantity: 5,
-		// 	on: false,
-		// })
-		// fireEmitter2.start();
-		// fireEmitter2.startFollow(player);
-		// player.fireEmitter2 = fireEmitter2;
 	}
 }

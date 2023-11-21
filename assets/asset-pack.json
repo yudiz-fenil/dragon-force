@@ -207,6 +207,21 @@
                 "key": "particle_6"
             },
             {
+                "url": "assets/images/particles/particle_7.png",
+                "type": "image",
+                "key": "particle_7"
+            },
+            {
+                "url": "assets/images/particles/particle_8.png",
+                "type": "image",
+                "key": "particle_8"
+            },
+            {
+                "url": "assets/images/particles/particle_9.png",
+                "type": "image",
+                "key": "particle_9"
+            },
+            {
                 "url": "src/scripts/ParticlesManager.js",
                 "type": "script",
                 "key": "ParticlesManager"
