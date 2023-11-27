@@ -1,11 +1,8 @@
 class GameManager {
 	constructor(oScene) {
-		this.oBulletsPrice = [
-			{ isOpen: true, nPrice: 0 }, // 1
-			{ isOpen: false, nPrice: 300 }, // 2
-			{ isOpen: false, nPrice: 500 }, // 3
-			{ isOpen: false, nPrice: 700 }, // 4
-		]
+		this.nNextLevelTime = 4; // 4
+		this.nTilePositionY = 10; // 10
+		this.nBlockVelocityY = 100; // 100
 		this.nCoinArrival = 10; // 10
 		this.nBossPower = 50; // 50
 		this.nTarget = 80; // 80

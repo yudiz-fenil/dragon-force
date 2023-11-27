@@ -46,32 +46,32 @@ class ParticlesManager {
 		}
 	}
 	blockParticles = (block, nX, nY) => {
-		this.blockParticles2(block, nX, nY);
-		// const aParticles = [
-		// 	this.oScene.add.particles("fire").setDepth(1),
-		// 	this.oScene.add.particles("particle_0").setDepth(1),
-		// 	this.oScene.add.particles("particle_1").setDepth(1),
-		// ];
-		// for (let i = 0; i < aParticles.length; i++) {
-		// 	const particle = aParticles[i];
-		// 	const emitter = particle.createEmitter({
-		// 		x: nX,
-		// 		y: nY,
-		// 		total: 100,
-		// 		scale: { min: 0.15, max: 0.35 },
-		// 		alpha: { start: 0.7, end: 0 },
-		// 		lifespan: { min: 200, max: 250 },
-		// 		speed: { min: 1000, max: 2500 },
-		// 		frequency: 40,
-		// 		on: false,
-		// 	})
-		// 	emitter.startFollow(block);
-		// 	emitter.start();
-		// 	setTimeout(() => {
-		// 		emitter.stop();
-		// 		emitter.remove();
-		// 	}, 350);
-		// }
+		// this.blockParticles2(block, nX, nY);
+		const aParticles = [
+			this.oScene.add.particles("fire").setDepth(1),
+			this.oScene.add.particles("particle_0").setDepth(1),
+			this.oScene.add.particles("particle_1").setDepth(1),
+		];
+		for (let i = 0; i < aParticles.length; i++) {
+			const particle = aParticles[i];
+			const emitter = particle.createEmitter({
+				x: nX,
+				y: nY,
+				total: 100,
+				scale: { min: 0.15, max: 0.35 },
+				alpha: { start: 0.7, end: 0 },
+				lifespan: { min: 200, max: 250 },
+				speed: { min: 1000, max: 2500 },
+				frequency: 40,
+				on: false,
+			})
+			emitter.startFollow(block);
+			emitter.start();
+			setTimeout(() => {
+				emitter.stop();
+				emitter.remove();
+			}, 350);
+		}
 	}
 	blockParticles2 = (block, nX, nY) => {
 		const aParticles = [

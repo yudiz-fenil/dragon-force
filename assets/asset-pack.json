@@ -7,9 +7,9 @@
                 "key": "bg"
             },
             {
-                "url": "assets/images/bg_buy.png",
+                "url": "assets/images/bg_popup.png",
                 "type": "image",
-                "key": "bg_buy"
+                "key": "bg_popup"
             },
             {
                 "url": "assets/images/blocks/block_1.png",
@@ -37,29 +37,19 @@
                 "key": "bossOuterbar"
             },
             {
-                "url": "assets/images/buttons/btn_buy.png",
-                "type": "image",
-                "key": "btn_buy"
-            },
-            {
-                "url": "assets/images/buttons/btn_close.png",
-                "type": "image",
-                "key": "btn_close"
-            },
-            {
                 "url": "assets/images/buttons/btn_play.png",
                 "type": "image",
                 "key": "btn_play"
             },
             {
+                "url": "assets/images/buttons/btn_replay.png",
+                "type": "image",
+                "key": "btn_replay"
+            },
+            {
                 "url": "assets/images/bullet.png",
                 "type": "image",
                 "key": "bullet"
-            },
-            {
-                "url": "assets/images/check.png",
-                "type": "image",
-                "key": "check"
             },
             {
                 "url": "assets/images/coin.png",
@@ -70,51 +60,6 @@
                 "url": "assets/images/coin-base.png",
                 "type": "image",
                 "key": "coin-base"
-            },
-            {
-                "url": "assets/images/fire-sprite/f1.png",
-                "type": "image",
-                "key": "f1"
-            },
-            {
-                "url": "assets/images/fire-sprite/f2.png",
-                "type": "image",
-                "key": "f2"
-            },
-            {
-                "url": "assets/images/fire-sprite/f3.png",
-                "type": "image",
-                "key": "f3"
-            },
-            {
-                "url": "assets/images/fire-sprite/f4.png",
-                "type": "image",
-                "key": "f4"
-            },
-            {
-                "url": "assets/images/fire-sprite/f5.png",
-                "type": "image",
-                "key": "f5"
-            },
-            {
-                "url": "assets/images/fire-sprite/f6.png",
-                "type": "image",
-                "key": "f6"
-            },
-            {
-                "url": "assets/images/fire-sprite/f7.png",
-                "type": "image",
-                "key": "f7"
-            },
-            {
-                "url": "assets/images/fire-sprite/f8.png",
-                "type": "image",
-                "key": "f8"
-            },
-            {
-                "url": "assets/images/fire-sprite/f9.png",
-                "type": "image",
-                "key": "f9"
             },
             {
                 "url": "assets/images/fill-base.png",
@@ -132,14 +77,14 @@
                 "key": "fire"
             },
             {
-                "url": "assets/animations/fire.json",
-                "type": "animation",
-                "key": "fire_1"
-            },
-            {
                 "url": "assets/images/particles/fire2.png",
                 "type": "image",
                 "key": "fire2"
+            },
+            {
+                "url": "assets/images/particles/g_y.png",
+                "type": "image",
+                "key": "g_y"
             },
             {
                 "url": "src/scripts/GameManager.js",
@@ -165,6 +110,16 @@
                 "url": "assets/images/insects/insects_2.png",
                 "type": "image",
                 "key": "insects_2"
+            },
+            {
+                "url": "assets/images/lbl_completed.png",
+                "type": "image",
+                "key": "lbl_completed"
+            },
+            {
+                "url": "assets/images/lbl_gameover.png",
+                "type": "image",
+                "key": "lbl_gameover"
             },
             {
                 "url": "assets/images/outerBar.png",

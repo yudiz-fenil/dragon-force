@@ -327,7 +327,7 @@
             "scope": "CLASS",
             "components": [],
             "x": 540,
-            "y": 900,
+            "y": 901,
             "originX": 0.5,
             "originY": 0.5,
             "visible": false,
@@ -343,39 +343,84 @@
             "shadow.blur": 3
         },
         {
-            "type": "Text",
-            "id": "76ac6df9-9888-487e-9a51-738972d68795",
-            "label": "txt_level_up",
+            "type": "Container",
+            "id": "98851453-3b39-4678-9e71-e2ce30afb095",
+            "label": "container_popup",
             "scope": "CLASS",
             "components": [],
             "x": 540,
             "y": 900,
-            "originX": 0.5,
-            "originY": 0.5,
+            "scaleX": 0,
+            "scaleY": 0,
             "visible": false,
-            "text": "LEVEL UP!",
-            "fontFamily": "LilitaOne",
-            "fontSize": "66px",
-            "stroke": "#000000ff",
-            "strokeThickness": 5,
-            "shadow.offsetX": 3,
-            "shadow.offsetY": 3,
-            "shadow.stroke": true,
-            "shadow.color": "#000000ff",
-            "shadow.blur": 3
-        },
-        {
-            "type": "Sprite",
-            "id": "9ad465c4-57df-4d3a-9aa1-446f309079f1",
-            "label": "dragon_fire",
-            "scope": "CLASS",
-            "components": [],
-            "texture": {
-                "key": "f1"
-            },
-            "x": 484,
-            "y": 1160,
-            "visible": false
+            "list": [
+                {
+                    "type": "Image",
+                    "id": "e1cc22e9-6892-4ad1-b5db-722c2a522bb8",
+                    "label": "bg_popup",
+                    "components": [],
+                    "texture": {
+                        "key": "bg_popup"
+                    }
+                },
+                {
+                    "type": "Container",
+                    "id": "2562d4e5-b8ee-44ac-b083-b91092b2c983",
+                    "label": "container_btn_particles",
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 0.48146345659472445,
+                    "y": 295.8114989117246,
+                    "list": []
+                },
+                {
+                    "type": "Image",
+                    "id": "fd02bdbc-df9a-4e97-8449-f1310774e992",
+                    "label": "btn_replay",
+                    "scope": "CLASS",
+                    "components": [],
+                    "texture": {
+                        "key": "btn_replay"
+                    },
+                    "x": 0.48146345659472445,
+                    "y": 295.8114989117246,
+                    "originX": 0.41,
+                    "originY": 0.32
+                },
+                {
+                    "type": "Image",
+                    "id": "51ef4883-44c0-4d65-b398-c541bae2635f",
+                    "label": "lbl_completed",
+                    "scope": "CLASS",
+                    "components": [],
+                    "texture": {
+                        "key": "lbl_completed"
+                    },
+                    "x": 0.48146345659472445,
+                    "y": -210.18850108827542
+                },
+                {
+                    "type": "Text",
+                    "id": "76ac6df9-9888-487e-9a51-738972d68795",
+                    "label": "txt_level_up",
+                    "scope": "CLASS",
+                    "components": [],
+                    "x": 0.48146345659472445,
+                    "y": -30.188501088275416,
+                    "originX": 0.5,
+                    "originY": 0.5,
+                    "text": "NEXT LEVEL IN 3",
+                    "fontFamily": "LilitaOne",
+                    "fontSize": "66px",
+                    "stroke": "#000000ff",
+                    "strokeThickness": 5,
+                    "shadow.offsetX": 3,
+                    "shadow.offsetY": 3,
+                    "shadow.stroke": true,
+                    "shadow.color": "#000000ff",
+                    "shadow.blur": 3
+                }
+            ]
         }
     ],
     "plainObjects": [],

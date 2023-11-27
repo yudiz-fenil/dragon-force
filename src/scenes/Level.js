@@ -144,22 +144,41 @@ class Level extends Phaser.Scene {
 		container_header.add(txt_level);
 
 		// txt_boss
-		const txt_boss = this.add.text(540, 900, "", {});
+		const txt_boss = this.add.text(540, 901, "", {});
 		txt_boss.setOrigin(0.5, 0.5);
 		txt_boss.visible = false;
 		txt_boss.text = "BOSS APPROCHING";
 		txt_boss.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
 
-		// txt_level_up
-		const txt_level_up = this.add.text(540, 900, "", {});
-		txt_level_up.setOrigin(0.5, 0.5);
-		txt_level_up.visible = false;
-		txt_level_up.text = "LEVEL UP!";
-		txt_level_up.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
+		// container_popup
+		const container_popup = this.add.container(540, 900);
+		container_popup.scaleX = 0;
+		container_popup.scaleY = 0;
+		container_popup.visible = false;
 
-		// dragon_fire
-		const dragon_fire = this.add.sprite(484, 1160, "f1");
-		dragon_fire.visible = false;
+		// bg_popup
+		const bg_popup = this.add.image(0, 0, "bg_popup");
+		container_popup.add(bg_popup);
+
+		// container_btn_particles
+		const container_btn_particles = this.add.container(0.48146345659472445, 295.8114989117246);
+		container_popup.add(container_btn_particles);
+
+		// btn_replay
+		const btn_replay = this.add.image(0.48146345659472445, 295.8114989117246, "btn_replay");
+		btn_replay.setOrigin(0.41, 0.32);
+		container_popup.add(btn_replay);
+
+		// lbl_completed
+		const lbl_completed = this.add.image(0.48146345659472445, -210.18850108827542, "lbl_completed");
+		container_popup.add(lbl_completed);
+
+		// txt_level_up
+		const txt_level_up = this.add.text(0.48146345659472445, -30.188501088275416, "", {});
+		txt_level_up.setOrigin(0.5, 0.5);
+		txt_level_up.text = "NEXT LEVEL IN 3";
+		txt_level_up.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
+		container_popup.add(txt_level_up);
 
 		this.bg = bg;
 		this.container_particles = container_particles;
@@ -179,8 +198,11 @@ class Level extends Phaser.Scene {
 		this.bossInnerBar = bossInnerBar;
 		this.txt_level = txt_level;
 		this.txt_boss = txt_boss;
+		this.container_popup = container_popup;
+		this.container_btn_particles = container_btn_particles;
+		this.btn_replay = btn_replay;
+		this.lbl_completed = lbl_completed;
 		this.txt_level_up = txt_level_up;
-		this.dragon_fire = dragon_fire;
 
 		this.events.emit("scene-awake");
 	}
@@ -221,20 +243,66 @@ class Level extends Phaser.Scene {
 	txt_level;
 	/** @type {Phaser.GameObjects.Text} */
 	txt_boss;
+	/** @type {Phaser.GameObjects.Container} */
+	container_popup;
+	/** @type {Phaser.GameObjects.Container} */
+	container_btn_particles;
+	/** @type {Phaser.GameObjects.Image} */
+	btn_replay;
+	/** @type {Phaser.GameObjects.Image} */
+	lbl_completed;
 	/** @type {Phaser.GameObjects.Text} */
 	txt_level_up;
-	/** @type {Phaser.GameObjects.Sprite} */
-	dragon_fire;
 
 	/* START-USER-CODE */
 
 	// Write more your code here
+	btnParticles = () => {
+		const fireParticle1 = this.add.particles("g_y");
+		this.container_btn_particles.add(fireParticle1);
+		this.btnEmitter1 = fireParticle1.createEmitter({
+			x: { min: -50, max: 50 },
+			y: 0,
+			speed: 150,
+			scale: { start: 1, end: 0 },
+			angle: { min: 0, max: 360 },
+			speed: { min: -150, max: 150 },
+			lifespan: { min: 1000, max: 1500 },
+			gravityY: -380,
+			frequency: 50,
+			quantity: 5,
+			on: false,
+		})
+	}
 	fireParticles = (bullet) => this.oParticlesManager.fireParticles(bullet);
 	bossParticles = (bullet, boss, texture) => this.oParticlesManager.bossParticles(bullet, boss, texture);
 	blockParticles = (block, nX, nY) => this.oParticlesManager.blockParticles(block, nX, nY);
 	insectParticles = (insect, nX, nY, texture) => this.oParticlesManager.insectParticles(insect, nX, nY, texture);
 	ringParticle = (block, nX, nY) => this.oParticlesManager.ringParticle(block, nX, nY);
 	flashEffect = (x, y) => this.oParticlesManager.flashEffect(x, y);
+	pointerOver = (btn, scale) => {
+		this.input.setDefaultCursor('pointer');
+		this.btnEmitter1.start();
+		this.tweens.add({
+			targets: btn,
+			scaleX: scale + 0.08,
+			scaleY: scale + 0.08,
+			duration: 100
+		})
+	}
+	pointerOut = (btn, scale) => {
+		this.input.setDefaultCursor('default');
+		this.btnEmitter1.stop();
+		this.tweens.add({
+			targets: btn,
+			scaleX: scale,
+			scaleY: scale,
+			duration: 100,
+			onComplete: () => {
+				btn.setScale(scale);
+			}
+		})
+	}
 	setPlayer = () => {
 		const texture = this.oGameManager.oLevels[this.nLevel].sPlayer;
 		const player = this.physics.add.image(540, 1500, texture);
@@ -346,23 +414,6 @@ class Level extends Phaser.Scene {
 			this.bossApproch();
 		}
 	}
-	levelUpTextAnimation = () => {
-		this.txt_level_up.setVisible(true);
-		this.tweens.add({
-			targets: this.txt_level_up,
-			alpha: 0,
-			yoyo: true,
-			repeat: 2,
-			duration: 500,
-			onUpdate: () => {
-				this.blocksCamera.shake(17, 0.015);
-			},
-			onComplete: () => {
-				this.txt_level_up.setVisible(false);
-				this.levelUp();
-			}
-		})
-	}
 	updateBossScore = (boss) => {
 		if (this.nBossScore == this.oGameManager.oLevels[this.nLevel].nBossPower) {
 			this.container_boss_progress.setVisible(true);
@@ -372,7 +423,7 @@ class Level extends Phaser.Scene {
 		if (this.nBossScore == 0) {
 			this.ringParticle(boss, boss.x, boss.y);
 			boss.destroy();
-			this.levelUpTextAnimation();
+			this.showPopup();
 		}
 	}
 	setScoreBar = () => {
@@ -449,20 +500,61 @@ class Level extends Phaser.Scene {
 		this.isBossApproching = false;
 		this.setScoreBar();
 		this.setBossBar();
+		this.container_popup.setVisible(false);
+		this.container_popup.setScale(0);
 		this.player.destroy();
 		this.txt_level.setText("LEVEL : " + this.nLevel);
 		this.nTotalBullets = this.oGameManager.oLevels[this.nLevel].nTotalBullets
 		this.player = this.setPlayer();
 		this.physics.add.overlap(this.player, this.coinsGroup, this.handleCoinCollect, null, this);
-		this.physics.add.overlap(this.player, this.blocksGroup, () => this.gameOver(), null, this);
-		this.physics.add.overlap(this.player, this.bossGroup, () => this.gameOver(), null, this);
-		this.physics.add.overlap(this.player, this.insectGroup, () => this.gameOver(), null, this);
+		this.physics.add.overlap(this.player, this.blocksGroup, this.gameOver, null, this);
+		this.physics.add.overlap(this.player, this.bossGroup, this.gameOver, null, this);
+		this.physics.add.overlap(this.player, this.insectGroup, this.gameOver, null, this);
 		this.container_boss_progress.setVisible(false);
 		this.createBlocks();
 	}
-	gameOver = () => {
+	setGameOver = () => {
+		this.btn_replay.setVisible(true);
+		this.lbl_completed.setTexture("lbl_gameover");
+		this.txt_level_up.setText("OOPS!");
+	}
+	setLevelComplete = () => {
+		let nTime = this.oGameManager.nNextLevelTime;
+		this.levelUpInterval = setInterval(() => {
+			nTime--;
+			if (nTime === 0) {
+				this.txt_level_up.setText("START FIRE!");
+				this.btnEmitter1 && this.btnEmitter1.stop();
+				this.btn_replay.setVisible(false);
+			} else if (nTime <= -1) {
+				clearInterval(this.levelUpInterval);
+				this.levelUp();
+			} else {
+				this.txt_level_up.setText("NEXT LEVEL IN " + nTime);
+			}
+		}, 1000);
+	}
+	showPopup = () => {
+		this.isGameOver ? this.setGameOver() : this.setLevelComplete();
+		this.input.mouse.releasePointerLock();
+		this.container_popup.setScale(0);
+		this.container_popup.setVisible(true);
+		this.tweens.add({
+			targets: this.container_popup,
+			scaleX: 1,
+			scaleY: 1,
+			duration: 300,
+			// ease: 'Bounce',
+			onComplete: () => {
+				this.btn_replay.setInteractive();
+			}
+		});
+	}
+	gameOver = (player) => {
+		player.destroy();
+		this.isGameOver = true;
 		localStorage.setItem('dragon_coins', this.nCoins);
-		this.scene.restart("Level", { oData: this.nLevel });
+		this.showPopup();
 	}
 	init(data) {
 		if (data.oData) {
@@ -471,11 +563,10 @@ class Level extends Phaser.Scene {
 	}
 	create() {
 		this.editorCreate();
-		// this.dragon_fire.setVisible(true)
-		// this.dragon_fire.anims.play("fire");
 		this.oGameManager = new GameManager(this);
 		this.oParticlesManager = new ParticlesManager(this);
 		this.fireTimer = false;
+		this.isGameOver = false;
 		this.isBossApproching = false;
 		this.nScore = 0;
 		this.nBossScore = 0;
@@ -491,7 +582,9 @@ class Level extends Phaser.Scene {
 		this.blocksGroup = this.physics.add.group();
 		this.bossGroup = this.physics.add.group();
 		this.insectGroup = this.physics.add.group();
+		this.levelUpInterval = null;
 
+		this.btnParticles();
 		this.setScoreBar();
 		this.setBossBar();
 		this.player = this.setPlayer();
@@ -502,7 +595,7 @@ class Level extends Phaser.Scene {
 		this.createBlocks();
 
 		this.input.on('pointermove', (pointer) => {
-			if (pointer.isDown) {
+			if (pointer.isDown && !this.isGameOver) {
 				this.input.mouse.requestPointerLock();
 				const targetX = this.player.x + pointer.event.movementX * 2;
 				const targetY = this.player.y + pointer.event.movementY * 2;
@@ -517,20 +610,29 @@ class Level extends Phaser.Scene {
 				this.player.x = Phaser.Math.Clamp(targetX, (this.player.height / 4.5), 1080 - (this.player.height / 4.5));
 				this.player.y = Phaser.Math.Clamp(targetY, 800, 1910 - this.player.height / 2);
 			}
-		})
+		});
 		this.input.on('pointerdown', () => {
-			this.startFire();
-		})
+			!this.isGameOver && this.startFire();
+		});
 		this.input.on('pointerup', () => {
 			this.stopFire();
-		})
+		});
+		this.btn_replay.on('pointerdown', () => {
+			this.container_popup.setScale(0);
+			this.container_popup.setVisible(false);
+			this.levelUpInterval && clearInterval(this.levelUpInterval);
+			this.scene.restart("Level", { oData: this.nLevel });
+		});
+		this.btn_replay.on('pointerover', () => this.pointerOver(this.btn_replay, 1));
+		this.btn_replay.on('pointerout', () => this.pointerOut(this.btn_replay, 1));
+
 		this.physics.add.overlap(this.fireGroup, this.blocksGroup, this.handleBulletBlockCollision, null, this);
 		this.physics.add.overlap(this.fireGroup, this.bossGroup, this.handleBulletBossCollision, null, this);
 		this.physics.add.overlap(this.fireGroup, this.insectGroup, this.handleBulletInsectsCollision, null, this);
 		this.physics.add.overlap(this.player, this.coinsGroup, this.handleCoinCollect, null, this);
-		this.physics.add.overlap(this.player, this.blocksGroup, () => this.gameOver(), null, this);
-		this.physics.add.overlap(this.player, this.bossGroup, () => this.gameOver(), null, this);
-		this.physics.add.overlap(this.player, this.insectGroup, () => this.gameOver(), null, this);
+		this.physics.add.overlap(this.player, this.blocksGroup, this.gameOver, null, this);
+		this.physics.add.overlap(this.player, this.bossGroup, this.gameOver, null, this);
+		this.physics.add.overlap(this.player, this.insectGroup, this.gameOver, null, this);
 	}
 	handleCoinCollect = (player, coin) => {
 		const newCoin = this.add.image(coin.x, coin.y, "coin").setScale(0.5);
@@ -635,7 +737,6 @@ class Level extends Phaser.Scene {
 			}
 		})
 		this.nBossScore = this.oGameManager.oLevels[this.nLevel].nBossPower;
-
 		const moveBossDownAndUp = () => {
 			if (boss) {
 				const initialY = boss.y;
@@ -718,7 +819,7 @@ class Level extends Phaser.Scene {
 		insect.moveInsectsEvent = moveInsectsEvent;
 	}
 	update() {
-		this.bg.tilePositionY -= 10;
+		this.bg.tilePositionY -= this.oGameManager.nTilePositionY;
 		this.fireGroup.children.each((bullet) => {
 			if (bullet.y < 0) {
 				bullet.emitter.remove();
@@ -728,7 +829,7 @@ class Level extends Phaser.Scene {
 		if (this.blocksGroup.getLength() == 0 && !this.isBossApproching) this.createBlocks();
 		this.blocksGroup.children.iterate((block) => {
 			if (block) {
-				block.setVelocityY(100);
+				block.setVelocityY(this.oGameManager.nBlockVelocityY);
 				if (block.y > this.sys.game.config.height + block.height) {
 					block.destroy();
 				}
