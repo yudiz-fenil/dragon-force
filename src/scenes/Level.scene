@@ -78,7 +78,7 @@
                             "texture": {
                                 "key": "coin-base"
                             },
-                            "x": 1067.5,
+                            "x": 1065,
                             "y": 86,
                             "originX": 1
                         },
@@ -91,7 +91,7 @@
                             "texture": {
                                 "key": "coin"
                             },
-                            "x": 1038,
+                            "x": 1036,
                             "y": 86,
                             "scaleX": 0.5,
                             "scaleY": 0.5
@@ -102,7 +102,7 @@
                             "label": "txt_coins",
                             "scope": "CLASS",
                             "components": [],
-                            "x": 1006,
+                            "x": 1004,
                             "y": 87,
                             "originX": 1,
                             "originY": 0.5,
@@ -175,15 +175,16 @@
                         {
                             "type": "Image",
                             "id": "3a2ad675-2c97-4518-8246-338b3f57edaa",
-                            "label": "insects_1",
+                            "label": "level_insect",
+                            "scope": "CLASS",
                             "components": [],
                             "texture": {
-                                "key": "insects_1"
+                                "key": "insects_2"
                             },
                             "x": 364,
                             "y": 86,
-                            "scaleX": 0.6,
-                            "scaleY": 0.6
+                            "scaleX": 0.3,
+                            "scaleY": 0.3
                         },
                         {
                             "type": "Image",
@@ -300,7 +301,7 @@
                     "texture": {
                         "key": "coin-base"
                     },
-                    "x": 162,
+                    "x": 100,
                     "y": 86
                 },
                 {
@@ -309,7 +310,7 @@
                     "label": "txt_level",
                     "scope": "CLASS",
                     "components": [],
-                    "x": 160,
+                    "x": 98,
                     "y": 86,
                     "originX": 0.5,
                     "originY": 0.5,
@@ -343,6 +344,28 @@
             "shadow.blur": 3
         },
         {
+            "type": "Text",
+            "id": "1b655838-3217-412c-a0f5-9db3fbc6da24",
+            "label": "txt_guide",
+            "scope": "CLASS",
+            "components": [],
+            "x": 540,
+            "y": 901,
+            "originX": 0.5,
+            "originY": 0.5,
+            "visible": false,
+            "text": "TAP & HOLD TO FIRE",
+            "fontFamily": "LilitaOne",
+            "fontSize": "66px",
+            "stroke": "#000000ff",
+            "strokeThickness": 5,
+            "shadow.offsetX": 3,
+            "shadow.offsetY": 3,
+            "shadow.stroke": true,
+            "shadow.color": "#000000ff",
+            "shadow.blur": 3
+        },
+        {
             "type": "Container",
             "id": "98851453-3b39-4678-9e71-e2ce30afb095",
             "label": "container_popup",
@@ -350,8 +373,6 @@
             "components": [],
             "x": 540,
             "y": 900,
-            "scaleX": 0,
-            "scaleY": 0,
             "visible": false,
             "list": [
                 {
@@ -396,8 +417,7 @@
                     "texture": {
                         "key": "lbl_completed"
                     },
-                    "x": 0.48146345659472445,
-                    "y": -210.18850108827542
+                    "y": -136
                 },
                 {
                     "type": "Text",
@@ -405,8 +425,7 @@
                     "label": "txt_level_up",
                     "scope": "CLASS",
                     "components": [],
-                    "x": 0.48146345659472445,
-                    "y": -30.188501088275416,
+                    "y": -329,
                     "originX": 0.5,
                     "originY": 0.5,
                     "text": "NEXT LEVEL IN 3",

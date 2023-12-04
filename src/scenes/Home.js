@@ -33,11 +33,13 @@ class Home extends Phaser.Scene {
 		const coinImage = this.add.image(64, 64, "coin");
 		coinImage.scaleX = 0.6;
 		coinImage.scaleY = 0.6;
+		coinImage.visible = false;
 		container_header.add(coinImage);
 
 		// txt_coins
 		const txt_coins = this.add.text(107, 64, "", {});
 		txt_coins.setOrigin(0, 0.5);
+		txt_coins.visible = false;
 		txt_coins.text = "0";
 		txt_coins.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px" });
 		container_header.add(txt_coins);

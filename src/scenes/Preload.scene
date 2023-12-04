@@ -34,6 +34,7 @@
             "y": 1518,
             "originX": 0.5,
             "originY": 0.5,
+            "visible": false,
             "text": "0%",
             "fontFamily": "LilitaOne",
             "fontSize": "100px"
@@ -48,6 +49,20 @@
             },
             "x": 540,
             "y": 800
+        },
+        {
+            "type": "Text",
+            "id": "dc5d105c-a68c-46aa-bfcf-36a843ec5cde",
+            "label": "txt_progress",
+            "scope": "CLASS",
+            "components": [],
+            "x": 540,
+            "y": 1540,
+            "originX": 0.5,
+            "originY": 0.5,
+            "text": "0%",
+            "fontFamily": "LilitaOne",
+            "fontSize": "100px"
         }
     ],
     "plainObjects": [],

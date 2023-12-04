@@ -137,6 +137,11 @@
                 "key": "particle_1"
             },
             {
+                "url": "assets/images/particles/particle_10.png",
+                "type": "image",
+                "key": "particle_10"
+            },
+            {
                 "url": "assets/images/particles/particle_2.png",
                 "type": "image",
                 "key": "particle_2"

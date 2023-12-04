@@ -40,18 +40,18 @@ class Level extends Phaser.Scene {
 		container_header.add(container_coin);
 
 		// coin_base
-		const coin_base = this.add.image(1067.5, 86, "coin-base");
+		const coin_base = this.add.image(1065, 86, "coin-base");
 		coin_base.setOrigin(1, 0.5);
 		container_coin.add(coin_base);
 
 		// coinImage
-		const coinImage = this.add.image(1038, 86, "coin");
+		const coinImage = this.add.image(1036, 86, "coin");
 		coinImage.scaleX = 0.5;
 		coinImage.scaleY = 0.5;
 		container_coin.add(coinImage);
 
 		// txt_coins
-		const txt_coins = this.add.text(1006, 87, "", {});
+		const txt_coins = this.add.text(1004, 87, "", {});
 		txt_coins.setOrigin(1, 0.5);
 		txt_coins.text = "0";
 		txt_coins.setStyle({ "align": "right", "fontFamily": "LilitaOne", "fontSize": "54px" });
@@ -82,11 +82,11 @@ class Level extends Phaser.Scene {
 		innerBar.setOrigin(0, 0.5);
 		container_score.add(innerBar);
 
-		// insects_1
-		const insects_1 = this.add.image(364, 86, "insects_1");
-		insects_1.scaleX = 0.6;
-		insects_1.scaleY = 0.6;
-		container_score.add(insects_1);
+		// level_insect
+		const level_insect = this.add.image(364, 86, "insects_2");
+		level_insect.scaleX = 0.3;
+		level_insect.scaleY = 0.3;
+		container_score.add(level_insect);
 
 		// fill_line
 		const fill_line = this.add.image(471, 83, "fill-line");
@@ -133,11 +133,11 @@ class Level extends Phaser.Scene {
 		container_boss_progress.add(bossInnerBar);
 
 		// fill_base_1
-		const fill_base_1 = this.add.image(162, 86, "coin-base");
+		const fill_base_1 = this.add.image(100, 86, "coin-base");
 		container_header.add(fill_base_1);
 
 		// txt_level
-		const txt_level = this.add.text(160, 86, "", {});
+		const txt_level = this.add.text(98, 86, "", {});
 		txt_level.setOrigin(0.5, 0.5);
 		txt_level.text = "LEVEL : 1";
 		txt_level.setStyle({ "fontFamily": "LilitaOne", "fontSize": "34px", "shadow.color": "#fff" });
@@ -150,10 +150,15 @@ class Level extends Phaser.Scene {
 		txt_boss.text = "BOSS APPROCHING";
 		txt_boss.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
 
+		// txt_guide
+		const txt_guide = this.add.text(540, 901, "", {});
+		txt_guide.setOrigin(0.5, 0.5);
+		txt_guide.visible = false;
+		txt_guide.text = "TAP & HOLD TO FIRE";
+		txt_guide.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
+
 		// container_popup
 		const container_popup = this.add.container(540, 900);
-		container_popup.scaleX = 0;
-		container_popup.scaleY = 0;
 		container_popup.visible = false;
 
 		// bg_popup
@@ -170,11 +175,11 @@ class Level extends Phaser.Scene {
 		container_popup.add(btn_replay);
 
 		// lbl_completed
-		const lbl_completed = this.add.image(0.48146345659472445, -210.18850108827542, "lbl_completed");
+		const lbl_completed = this.add.image(0, -136, "lbl_completed");
 		container_popup.add(lbl_completed);
 
 		// txt_level_up
-		const txt_level_up = this.add.text(0.48146345659472445, -30.188501088275416, "", {});
+		const txt_level_up = this.add.text(0, -329, "", {});
 		txt_level_up.setOrigin(0.5, 0.5);
 		txt_level_up.text = "NEXT LEVEL IN 3";
 		txt_level_up.setStyle({ "fontFamily": "LilitaOne", "fontSize": "66px", "stroke": "#000000ff", "strokeThickness": 5, "shadow.offsetX": 3, "shadow.offsetY": 3, "shadow.color": "#000000ff", "shadow.blur": 3, "shadow.stroke": true });
@@ -192,12 +197,14 @@ class Level extends Phaser.Scene {
 		this.txt_score = txt_score;
 		this.outerBar = outerBar;
 		this.innerBar = innerBar;
+		this.level_insect = level_insect;
 		this.container_stars = container_stars;
 		this.container_boss_progress = container_boss_progress;
 		this.bossOuterbar = bossOuterbar;
 		this.bossInnerBar = bossInnerBar;
 		this.txt_level = txt_level;
 		this.txt_boss = txt_boss;
+		this.txt_guide = txt_guide;
 		this.container_popup = container_popup;
 		this.container_btn_particles = container_btn_particles;
 		this.btn_replay = btn_replay;
@@ -231,6 +238,8 @@ class Level extends Phaser.Scene {
 	outerBar;
 	/** @type {Phaser.GameObjects.Image} */
 	innerBar;
+	/** @type {Phaser.GameObjects.Image} */
+	level_insect;
 	/** @type {Phaser.GameObjects.Container} */
 	container_stars;
 	/** @type {Phaser.GameObjects.Container} */
@@ -243,6 +252,8 @@ class Level extends Phaser.Scene {
 	txt_level;
 	/** @type {Phaser.GameObjects.Text} */
 	txt_boss;
+	/** @type {Phaser.GameObjects.Text} */
+	txt_guide;
 	/** @type {Phaser.GameObjects.Container} */
 	container_popup;
 	/** @type {Phaser.GameObjects.Container} */
@@ -303,6 +314,19 @@ class Level extends Phaser.Scene {
 			}
 		})
 	}
+	showGuide = () => {
+		this.txt_guide.setVisible(true);
+		this.tweens.add({
+			targets: this.txt_guide,
+			alpha: 0,
+			yoyo: true,
+			repeat: 2,
+			duration: 200,
+			onComplete: () => {
+				this.txt_guide.setVisible(false);
+			}
+		})
+	}
 	setPlayer = () => {
 		const texture = this.oGameManager.oLevels[this.nLevel].sPlayer;
 		const player = this.physics.add.image(540, 1500, texture);
@@ -325,7 +349,8 @@ class Level extends Phaser.Scene {
 		// bullet.setAngle(angle);
 		bullet.setVelocityY(-3000);
 		bullet.setVisible(true);
-		bullet.setCircle(25);
+		bullet.setCircle(60);
+		bullet.setOffset(-25, -10);
 		this.fireParticles(bullet);
 	}
 	shootBullet = () => {
@@ -423,6 +448,7 @@ class Level extends Phaser.Scene {
 		if (this.nBossScore == 0) {
 			this.ringParticle(boss, boss.x, boss.y);
 			boss.destroy();
+			this.player.setVisible(false);
 			this.showPopup();
 		}
 	}
@@ -478,6 +504,7 @@ class Level extends Phaser.Scene {
 	}
 	addCoin = (x, y) => {
 		const coin = this.coinsGroup.create(x, y, 'coin').setScale(0.5);
+		this.container_header.add(coin);
 		coin.setVelocityY(Phaser.Math.Between(1000, 1100));
 		this.tweens.add({
 			targets: coin,
@@ -492,14 +519,24 @@ class Level extends Phaser.Scene {
 		this.txt_coins.setText(this.nCoins);
 		this.coin_base.displayWidth = this.txt_coins.width + 70;
 	}
+	setLevelInsect = () => {
+		const texture = this.oGameManager.oLevels[this.nLevel].sInsect;
+		texture == "insects_1" ? this.level_insect.setScale(0.6, 0.6) : this.level_insect.setScale(0.35, 0.35);
+		this.level_insect.setTexture(texture);
+	}
 	levelUp = () => {
 		this.nLevel++;
 		if (this.nLevel == 9) this.nLevel = 1;
+		this.isPopUp = false;
 		this.nScore = 0;
 		this.nBossScore = 0;
 		this.isBossApproching = false;
+		this.player.setVisible(true);
 		this.setScoreBar();
 		this.setBossBar();
+		this.setLevelInsect();
+		this.oGameManager.nTilePositionY = 10;
+		this.physics.resume();
 		this.container_popup.setVisible(false);
 		this.container_popup.setScale(0);
 		this.player.destroy();
@@ -535,6 +572,8 @@ class Level extends Phaser.Scene {
 		}, 1000);
 	}
 	showPopup = () => {
+		this.stopFire();
+		this.isPopUp = true;
 		this.isGameOver ? this.setGameOver() : this.setLevelComplete();
 		this.input.mouse.releasePointerLock();
 		this.container_popup.setScale(0);
@@ -543,18 +582,38 @@ class Level extends Phaser.Scene {
 			targets: this.container_popup,
 			scaleX: 1,
 			scaleY: 1,
-			duration: 300,
-			// ease: 'Bounce',
+			duration: 350,
 			onComplete: () => {
 				this.btn_replay.setInteractive();
+				this.oGameManager.nTilePositionY = 0;
+				this.physics.pause();
 			}
+		});
+		this.fireGroup.children.each((bullet) => {
+			bullet.emitter.remove();
+			bullet.destroy();
 		});
 	}
 	gameOver = (player) => {
 		player.destroy();
 		this.isGameOver = true;
 		localStorage.setItem('dragon_coins', this.nCoins);
-		this.showPopup();
+		// Create blast particles when player is destroyed
+		const particles = this.add.particles('particle_10');
+		const emitter = particles.createEmitter({
+			speed: 2000,
+			scale: { start: 0.3, end: 0.5 },
+			alpha: { start: 1, end: 0 },
+			lifespan: 3000,
+			frequency: 10,
+		});
+		emitter.explode(35, player.x, player.y);
+		this.isPopUp = true;
+		this.stopFire();
+		setTimeout(() => {
+			this.showPopup();
+			emitter.remove();
+		}, 500);
 	}
 	init(data) {
 		if (data.oData) {
@@ -567,6 +626,7 @@ class Level extends Phaser.Scene {
 		this.oParticlesManager = new ParticlesManager(this);
 		this.fireTimer = false;
 		this.isGameOver = false;
+		this.isPopUp = false;
 		this.isBossApproching = false;
 		this.nScore = 0;
 		this.nBossScore = 0;
@@ -583,19 +643,20 @@ class Level extends Phaser.Scene {
 		this.bossGroup = this.physics.add.group();
 		this.insectGroup = this.physics.add.group();
 		this.levelUpInterval = null;
-
+		this.setLevelInsect();
+		this.showGuide();
 		this.btnParticles();
 		this.setScoreBar();
 		this.setBossBar();
 		this.player = this.setPlayer();
 
 		this.blocksCamera = this.cameras.add(0, 0, this.sys.game.config.width, this.sys.game.config.height);
-		this.blocksCamera.ignore([this.player, this.fireGroup, this.container_header, this.container_body, this.container_particles, this.bg]);
+		// this.blocksCamera.ignore([this.player, this.fireGroup, this.container_header, this.container_body, this.container_particles, this.bg]);
 
 		this.createBlocks();
 
 		this.input.on('pointermove', (pointer) => {
-			if (pointer.isDown && !this.isGameOver) {
+			if (pointer.isDown && !this.isGameOver && !this.isPopUp) {
 				this.input.mouse.requestPointerLock();
 				const targetX = this.player.x + pointer.event.movementX * 2;
 				const targetY = this.player.y + pointer.event.movementY * 2;
@@ -612,7 +673,7 @@ class Level extends Phaser.Scene {
 			}
 		});
 		this.input.on('pointerdown', () => {
-			!this.isGameOver && this.startFire();
+			!this.isPopUp && this.startFire();
 		});
 		this.input.on('pointerup', () => {
 			this.stopFire();
@@ -636,6 +697,7 @@ class Level extends Phaser.Scene {
 	}
 	handleCoinCollect = (player, coin) => {
 		const newCoin = this.add.image(coin.x, coin.y, "coin").setScale(0.5);
+		this.container_header.add(newCoin);
 		coin.destroy();
 		this.tweens.add({
 			targets: newCoin,
@@ -646,9 +708,9 @@ class Level extends Phaser.Scene {
 			duration: 800,
 			onComplete: () => {
 				newCoin.destroy();
+				this.updateCoin();
 			}
 		})
-		this.updateCoin();
 	}
 	handleBulletBlockCollision = (bullet, block) => {
 		this.blockParticles(block, block.x, block.y + 10);
@@ -659,14 +721,14 @@ class Level extends Phaser.Scene {
 		bullet.emitter.remove();
 		bullet.destroy();
 
-		this.blocksCamera.shake(50, 0.01);
+		// this.blocksCamera.shake(50, 0.01);
 		block.destroy();
 	}
 	handleBulletBossCollision = (bullet, boss) => {
 		this.bossParticles(bullet, boss, this.oGameManager.oLevels[this.nLevel].sBossParticles);
 		bullet.emitter.remove();
 		bullet.destroy();
-		this.blocksCamera.shake(50, 0.01);
+		// this.blocksCamera.shake(50, 0.01);
 		this.updateBossScore(boss);
 	}
 	handleBulletInsectsCollision = (bullet, insect) => {
@@ -686,7 +748,7 @@ class Level extends Phaser.Scene {
 			insect.setData('health', health);
 		}
 
-		this.blocksCamera.shake(50, 0.01);
+		// this.blocksCamera.shake(50, 0.01);
 	}
 	bossTextAnimation = () => {
 		this.txt_boss.setVisible(true);
@@ -697,7 +759,7 @@ class Level extends Phaser.Scene {
 			repeat: 2,
 			duration: 500,
 			onUpdate: () => {
-				this.blocksCamera.shake(17, 0.015);
+				// this.blocksCamera.shake(17, 0.015);
 			},
 			onComplete: () => {
 				this.txt_boss.setVisible(false);
