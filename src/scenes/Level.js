@@ -565,6 +565,7 @@ class Level extends Phaser.Scene {
 				this.btn_replay.setVisible(false);
 			} else if (nTime <= -1) {
 				clearInterval(this.levelUpInterval);
+				this.txt_level_up.setText("");
 				this.levelUp();
 			} else {
 				this.txt_level_up.setText("NEXT LEVEL IN " + nTime);
@@ -578,6 +579,7 @@ class Level extends Phaser.Scene {
 		this.input.mouse.releasePointerLock();
 		this.container_popup.setScale(0);
 		this.container_popup.setVisible(true);
+		this.btn_replay.setVisible(true);
 		this.tweens.add({
 			targets: this.container_popup,
 			scaleX: 1,
@@ -770,15 +772,44 @@ class Level extends Phaser.Scene {
 		const texture = this.oGameManager.oLevels[this.nLevel].sBoss;
 		const boss = this.physics.add.sprite(540, -100, texture);
 		this.bossGroup.add(boss);
-		if (texture == "boss_1") {
-			boss.setScale(0.8);
-			boss.setOrigin(0.46, 0.45);
-			boss.setCircle(boss.width / 2.2);
-		} else {
-			boss.setScale(0.8);
-			boss.setOrigin(0.45, 0.47);
-			boss.setCircle(boss.width / 3);
-			boss.setOffset(80, 50);
+		switch (texture) {
+			case 'boss_1':
+				boss.setScale(0.7);
+				boss.setOrigin(0.46, 0.45);
+				boss.setCircle(boss.width / 2.2);
+				break;
+			case 'boss_2':
+				boss.setScale(0.6);
+				boss.setOrigin(0.45, 0.47);
+				boss.setCircle(boss.width / 3);
+				boss.setOffset(80, 50);
+				break;
+			case 'boss_3':
+				boss.setOrigin(0.46, 0.45);
+				boss.setCircle(boss.width / 2.2);
+				break;
+			case 'boss_4':
+				boss.setOrigin(0.46, 0.45);
+				boss.setCircle(boss.width / 2.5);
+				boss.setOffset(30, -60);
+				break;
+			case 'boss_5':
+				boss.setOrigin(0.46, 0.45);
+				boss.setCircle(boss.width / 2.3);
+				break;
+			case 'boss_6':
+				boss.setOrigin(0.46, 0.45);
+				boss.setCircle(boss.width / 2.2);
+				break;
+			case 'boss_7':
+				boss.setOrigin(0.46, 0.45);
+				boss.setCircle(boss.width / 2.2);
+				boss.setOffset(0, 25);
+				break;
+			default:
+				boss.setOrigin(0.46, 0.45);
+				boss.setCircle(boss.width / 2.2);
+				break;
 		}
 		boss.setBounce(1);
 		this.container_blocks.add(boss);
@@ -787,12 +818,12 @@ class Level extends Phaser.Scene {
 			y: 450 * 2,
 			duration: 800,
 			onComplete: () => {
+				boss.setCollideWorldBounds(true, 1);
 				this.tweens.add({
 					targets: boss,
 					y: 450,
 					duration: 800,
 					onComplete: () => {
-						boss.setCollideWorldBounds(true, 1);
 						boss.setVelocityX(Phaser.Math.Between(400, 600));
 					}
 				})
@@ -805,8 +836,8 @@ class Level extends Phaser.Scene {
 				this.tweens.timeline({
 					targets: boss,
 					tweens: [
-						{ y: Phaser.Math.Between(1350, 1500), duration: Phaser.Math.Between(1350, 1500), ease: 'Power1' },
-						{ y: initialY, duration: Phaser.Math.Between(1350, 1500), ease: 'Power1' }
+						{ y: Phaser.Math.Between(1450, 1600), duration: Phaser.Math.Between(1450, 1600), ease: 'Power1' },
+						{ y: initialY, duration: Phaser.Math.Between(1450, 1600), ease: 'Power1' }
 					],
 					onComplete: () => {
 					}
