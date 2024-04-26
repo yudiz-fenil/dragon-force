@@ -217,7 +217,7 @@ class Home extends Phaser.Scene {
 		this.btn_play.setInteractive().on('pointerout', () => this.pointerOut(this.btn_play, 1));
 		this.btn_play.setInteractive().on('pointerup', () => {
 			const gameContainer = document.getElementById('game-division');
-			this.toggleFullScreen(gameContainer);
+			// this.toggleFullScreen(gameContainer);
 			this.scene.stop("Home");
 			this.scene.start("Level");
 		})

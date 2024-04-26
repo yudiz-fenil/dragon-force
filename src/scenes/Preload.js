@@ -65,8 +65,8 @@ class Preload extends Phaser.Scene {
 		this.isGameLoaded1 = false;
 		this.isGameLoaded2 = false;
 
-		// this.fakeLoading();
-		this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Home"));
+		this.fakeLoading();
+		// this.load.on(Phaser.Loader.Events.COMPLETE, () => this.scene.start("Home"));
 
 	}
 
